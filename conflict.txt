@@ -1,7 +1,9 @@
-conflict
+CONFLICT したとき
 
-<<<<<<< HEAD
-old
-=======
-x
->>>>>>> origin/master
+[子ブランチ] > git merge [親ブランチ]
+> git status
+(衝突したファイルを修正)
+> git add [ファイル名]
+> git commit
+> git push
+
