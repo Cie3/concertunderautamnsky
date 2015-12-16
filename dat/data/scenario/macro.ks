@@ -490,8 +490,8 @@ function モノローグ初期化() {
 [endmacro]
 
 [macro name=睡眠回復]
-[体力 変化=&"Math.max((f.生命 * 3 - f.体力 * 2) \ 10, 5)"]
-[学力 変化 = -4]
+[体力 変化=&"Math.floor(睡眠回復a + f.生命 * 睡眠回復b + f.体力 * 睡眠回復c)"]
+[学力 変化 =&睡眠学力低下]
 [endmacro]
 
 ;[足跡 名前=カケルが仲間になった]
@@ -713,7 +713,7 @@ if(黒棒 !==void){
 
 function 学力変化(変化) {
 f.学力 += 変化;
-f.学力 = Math.min((int)90, f.学力);
+f.学力 = Math.min((int)95, f.学力);
 f.学力 = Math.max((int)0, f.学力);
 }
 
