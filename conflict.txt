@@ -6,3 +6,5 @@ CONFLICT ‚µ‚½‚Æ‚«
 > git add [ƒtƒ@ƒCƒ‹–¼]
 > git commit
 > git push
+
+a
