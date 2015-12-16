@@ -1,3 +1,7 @@
 conflict
 
+<<<<<<< HEAD
 old
+=======
+x
+>>>>>>> origin/master
