@@ -8,12 +8,12 @@
 
 [title name=秋空のコンチェルト]
 [call storage=macro.ks]
-;余計な行を入れる
+
 ;=================================================
 ; タイトル画面
 ;=================================================
 *初期化
-
+;こちらにも余計な行
 [history enabled=false]
 [eval exp= "var testfile = 'シナリオテスト.txt'"]
 [eval exp= "var testplay = Storages.isExistentStorage(testfile)"]
