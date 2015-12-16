@@ -512,6 +512,7 @@ function モノローグ初期化() {
 [endmacro]
 
 ;デバッグ時に任意にフラグをON/OFFできる
+;同時に同名の会話の種も取得する
 ;[足跡デバッグ 名前=カケルが仲間になった]
 [macro name=足跡デバッグ]
 [if exp=testplay]
@@ -523,6 +524,7 @@ function モノローグ初期化() {
 	[三択 ア=&a イ=&b ウ=&c]
 	[if exp=イ]
 		[eval exp="足跡つける(mp.名前)"]
+		[eval exp="gainSeed(mp.名前, '', 0, 0)"]
 	[elsif exp=ウ]
 		[eval exp="足跡けす(mp.名前)"]
 	[endif]
@@ -886,7 +888,7 @@ if(inf) fontcolor = 色：種無限;
 [layopt layer=message2 page=fore visible=true]
 
 [style autoreturn=false]
-[if exp="idxSeed < 0 && !testplay"]
+[if exp="idxSeed < 0"]
 	[font color=0x999999 size=&fontsize]会話の種を使う（[emb exp=体力消費量]）[r][[[emb exp=ア]][resetfont][r][r]
 [else]
 	[link target=*f種選択ア]会話の種を使う（[emb exp=体力消費量]）[r][font color=&fontcolor size=&fontsize][[[emb exp=ア]][resetfont][endlink][r][r]
