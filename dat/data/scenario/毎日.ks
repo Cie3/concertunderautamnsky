@@ -13,6 +13,8 @@
 [else]
 	[if exp= "f.休日準備 != 0"]
 		[call storage= 休日準備.ks]
+	[elsif exp="f.カレンデート > 0"]
+		[call storage="scenario/個別/カレン.ks"]
 	[else]
 		[枠]
 		今日は思いっきり休むぞ～！！[next]
