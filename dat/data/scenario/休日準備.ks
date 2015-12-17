@@ -67,8 +67,6 @@
 	[eval exp="今日の進捗 += 進捗０"]
 [endif]
 
-[jump storage="scenario/個別/マリ.ks" cond="f.マリデート == 1"]
-
 [背景 画像=空き教室夕方]
 
 *進捗表示

@@ -120,12 +120,12 @@
 	実績 ([emb exp="countAchievements()"]/[emb exp="allAchievements()"])
 	[font size=20][r]
 
-	[if exp="sf.実績０：寝坊の危機!==void"]
+	[if exp="sf.実績０：クラス委員の心得!==void"]
 		[font color=&色：種２]
-		0. 寝坊の危機………………★朝、操作をせずに一分間経過した[r]
+		0. クラス委員の心得………★カレンから文化祭の準備について聞いた[r]
 	[else]
 		[font color=&色：文字]
-		0. 寝坊の危機………………　オフトゥンの吸引力[r]
+		0. クラス委員の心得………　カレンから文化祭の準備について聞こう[r]
 	[endif]
 
 	[if exp="sf.実績１：イズミが参加!==void"]
