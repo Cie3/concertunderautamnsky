@@ -15,6 +15,8 @@
 		[call storage= 休日準備.ks]
 	[elsif exp="f.カレンデート > 0"]
 		[call storage="scenario/個別/カレン.ks"]
+	[elsif exp="f.マリデート > 0"]
+		[call storage="scenario/個別/マリ.ks"]
 	[else]
 		[枠]
 		今日は思いっきり休むぞ～！！[next]

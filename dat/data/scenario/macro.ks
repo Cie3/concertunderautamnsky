@@ -307,11 +307,11 @@ function モノローグ初期化() {
 [endmacro]
 
 [macro name=背景教室]
-[if exp="f.昼休み"][背景 画像=教室][else][背景 画像=教室放課後][endif]
+[if exp="f.昼休み"][背景 画像=教室][else][背景 画像=教室夕方][endif]
 [endmacro]
 
 [macro name=背景廊下]
-[if exp="f.昼休み"][背景 画像=廊下][else][背景 画像=教室夕方][endif]
+[if exp="f.昼休み"][背景 画像=廊下][else][背景 画像=廊下夕方][endif]
 [endmacro]
 
 [macro name=背景階段]
@@ -420,6 +420,7 @@ function モノローグ初期化() {
 	[cancelskip]
 	[bgmopt volume=&"BGM音量/2"]
 	[SE 音=クリア.ogg 音量=50]
+	[メッセージ]
 	[emb exp="mp.名前"] ★達成★[ws][fadebgm volume=&"BGM音量" time=500][next]
 	[eval exp="sf[mp.名前] = 1"]
 [endif]
@@ -781,6 +782,30 @@ function fullname(s) {
 	if(s == 'カズキ') return '国分寺カズキ';
 	if(s == '前原先生') return '前原先生';
 	return '[警告：不正な名前です]';
+}
+
+function 人員計算() {
+	// 重複状態を正規化する
+	if(f.イズミ参加) f.イズミ招集 = 0;
+	if(f.マユ参加) f.マユ招集 = 0;
+	if(f.カケル参加) f.カケル招集 = 0;
+	if(f.ミドリ参加) f.ミドリ招集 = 0;
+	if(f.マリ参加) f.マリ招集 = 0;
+	var a = 3; // 主人公＋カレン＋ヨシオ
+	var b = f.イズミ参加 + f.マユ参加 + f.カケル参加 + f.ミドリ参加 + f.マリ参加;
+	var c = f.イズミ招集 + f.マユ招集 + f.カケル招集 + f.ミドリ招集 + f.マリ招集;
+	var d = f.モブ男招集 + f.モブ女招集;
+	var r = a + b + c + d;
+	// ８人より多い場合はモブを切り捨て
+	if(r > 8) {
+		r -= f.モブ女招集;
+		f.モブ女招集 = 0;
+	}
+	if(r > 8) {
+		r -= f.モブ男招集;
+		f.モブ男招集 = 0;
+	}
+	return r;
 }
 
 [endscript]
