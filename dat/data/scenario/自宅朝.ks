@@ -5,6 +5,7 @@
 [eval exp= "f.今日=today()"]
 [eval exp= "tf.セーブラベル=f.姓 + f.名 + '(残り' + f.日 + '日)' + f.曜日"]
 
+[jump storage="文化祭当日.ks" cond="f.日 == 0"]
 [if exp="f.日==19 && f.trial"]
 	[背景 画像=ロゴ]
 	[枠]
