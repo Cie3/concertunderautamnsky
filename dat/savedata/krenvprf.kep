@@ -21,14 +21,14 @@ height=223
 col0width=140
 col1width=400
 stayontop=0
-exprlist=現在@-@*f.マリ参加@-@*void@-@*f.足跡.マユの趣味はコスプレ@-@*f.足跡.カケルは気づいた@-@*f.イズミ栄養ドリンク@-@*f.体力@-@*f.生命@-@*void@-@*f.曜日@-@*void@-@*
+exprlist=現在@-@*f.マリ参加@-@*void@-@*f.足跡.マユの趣味はコスプレ@-@*f.足跡.カケルは気づいた@-@*f.イズミ栄養ドリンク@-@*f.体力@-@*f.生命@-@*f.昼休み@-@*f.曜日@-@*void@-@*
 interval=1000
 
 [script editor]
-left=468
-top=223
+left=469
+top=76
 width=538
 height=352
-content=f.体力 = 20;@-@*f.生命 = 40;@-@*f.イズミ栄養ドリンク = 1;@-@*
+content=f.主人公加速 = 1;@-@*
 stayontop=0
 

@@ -307,11 +307,11 @@ function ƒ‚ƒmƒ[ƒO‰Šú‰»() {
 [endmacro]
 
 [macro name=”wŒi‹³º]
-[if exp="f.’‹‹x‚İ"][”wŒi ‰æ‘œ=‹³º][else][”wŒi ‰æ‘œ=‹³º•ú‰ÛŒã][endif]
+[if exp="f.’‹‹x‚İ"][”wŒi ‰æ‘œ=‹³º][else][”wŒi ‰æ‘œ=‹³º—[•û][endif]
 [endmacro]
 
 [macro name=”wŒi˜L‰º]
-[if exp="f.’‹‹x‚İ"][”wŒi ‰æ‘œ=˜L‰º][else][”wŒi ‰æ‘œ=‹³º—[•û][endif]
+[if exp="f.’‹‹x‚İ"][”wŒi ‰æ‘œ=˜L‰º][else][”wŒi ‰æ‘œ=˜L‰º—[•û][endif]
 [endmacro]
 
 [macro name=”wŒiŠK’i]
@@ -420,6 +420,7 @@ function ƒ‚ƒmƒ[ƒO‰Šú‰»() {
 	[cancelskip]
 	[bgmopt volume=&"BGM‰¹—Ê/2"]
 	[SE ‰¹=ƒNƒŠƒA.ogg ‰¹—Ê=50]
+	[ƒƒbƒZ[ƒW]
 	[emb exp="mp.–¼‘O"] š’B¬š[ws][fadebgm volume=&"BGM‰¹—Ê" time=500][next]
 	[eval exp="sf[mp.–¼‘O] = 1"]
 [endif]
