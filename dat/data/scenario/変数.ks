@@ -46,6 +46,7 @@ var €”õ‚R = -100;
 var €”õ‚Q = -30;
 var €”õ‚P = -10;
 var €”õ‚O = 0;
+var ‘‘Ş‰ñ•œ = 3;
 var ‹x“ú‰ñ•œ = 15;
 var FF•¶š = 0x222211;
 var FF•¶š‚Q = 0xFFFFFF;
