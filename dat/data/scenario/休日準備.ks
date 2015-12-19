@@ -70,6 +70,7 @@
 	[体力 変化=&準備０]
 	[eval exp="今日の進捗 += 進捗０"]
 [elsif exp=エ]
+	[BGM 曲="文化祭準備03.ogg" 音量=66]
 	[体力 変化=&準備３]
 	[eval exp="今日の進捗 += 進捗３ + f.主人公加速"]
 [endif]
@@ -124,7 +125,7 @@
 [endif]
 
 [style autoreturn=true][r]
-進捗  ：[emb exp="f.進捗"]％  →  [font color=&色：強化][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
+進捗率：[emb exp="f.進捗"]％  →  [font color=&色：強化][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
 [endnowait]
 [モノローグ終了]
 [eval exp="f.進捗+=今日の進捗"]
