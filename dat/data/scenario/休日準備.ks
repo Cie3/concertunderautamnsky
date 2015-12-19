@@ -116,7 +116,7 @@
 [endif]
 
 [r]
-進捗  ：[emb exp="f.進捗"]％  →  [emb exp="f.進捗 + 今日の進捗"]％[next]
+進捗  ：[emb exp="f.進捗"]％  →  [font color=&色：強化][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
 [endnowait]
 [モノローグ終了]
 [eval exp="f.進捗+=今日の進捗"]

@@ -174,7 +174,7 @@
 [ch text="&'＋  '+(進捗招集)+'％ '" cond="f.モブ男招集"]
 [ch text="&'＋  '+(進捗招集)+'％ '" cond="f.モブ女招集"]
 [r]
-進捗  ：[emb exp="f.進捗"]％  →  [emb exp="f.進捗 + 今日の進捗"]％[next]
+進捗  ：[emb exp="f.進捗"]％  →  [font color=&色：強化][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
 [endnowait]
 [eval exp="f.進捗+=今日の進捗"]
 [if exp="f.進捗 >= 150"][実績解除 名前=実績１９：進捗１５０％][endif]
