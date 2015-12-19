@@ -1,6 +1,7 @@
 [eval exp="lˆõŒvZ()"]
 [jump target="*•ú‰ÛŒãƒŒƒbƒXƒ“" cond="f.•ú‰ÛŒãƒŒƒbƒXƒ“"]
 
+[eval exp="f.•½“ú€”õ’† = 1"]
 [ê–Ê“]Š·]
 [eval exp="var ¡“ú‚Ìi’» = 0"]
 [BGM ‹È=•¶‰»Õ€”õ01.ogg ‰¹—Ê=50 ƒ‹[ƒv]
@@ -19,6 +20,7 @@
 	[l•¨ ‰æ‘œ=’jq¶“kƒA –¼‘O=’jq¶“k]
 	‚ A[©]B[n]
 	–l‚Í‚±‚Ì‘—Ş‚ğæ¶‚Ì‚Æ‚±‚ë‚É‚Á‚Ä‚¢‚¯‚Î‚¢‚¢‚ñ‚¾‚æ‚ËB[next]
+	[eval exp="¡“ú‚Ìi’» += i’»µW"]
 [endif]
 
 [if exp="f.ƒ}ƒŠQ‰Á"]
@@ -73,6 +75,7 @@
 	[l•¨ ‰æ‘œ=—q¶“kƒA –¼‘O=—q¶“k]
 	—öƒ–ŒE‚³‚ñBŠ÷‚ğ•À‚×‚Ä‚İ‚é‚Æ‚¢‚¤‚Ì‚ÍA[n]
 	‚±‚ñ‚ÈŠ´‚¶‚Å‚¢‚¢‚ñ‚Å‚·‚©H[next]
+	[eval exp="¡“ú‚Ìi’» += i’»µW"]
 [endif]
 
 [if exp="f.ƒ~ƒhƒŠQ‰Á"]
@@ -91,7 +94,11 @@
 
 [ƒƒbƒZ[ƒW]
 ‰´‚Í‚Ç‚ê‚­‚ç‚¢Šæ’£‚ë‚¤‚©cc
-[l‘ğ ƒA="&'‘S—Í“Š‹…‚¾ ('+€”õ‚Q+')'" ƒC="&'“K“x‚É‚â‚é ('+€”õ‚P+')'" ƒE="&'Œ©‚Ä‚é‚¾‚¯ ('+€”õ‚O+')'"]
+[if exp="f.¶–½ + f.‘Ì—Í > -€”õ‚R"]
+	[l‘ğ ƒA="&'‘S—Í“Š‹…‚¾ ('+€”õ‚Q+')'" ƒC="&'“K“x‚É‚â‚é ('+€”õ‚P+')'" ƒE="&'Œ©‚Ä‚é‚¾‚¯ ('+€”õ‚O+')'" ƒG="&'‹†‹É‚Ì’Ç‚İ ('+€”õ‚R+')'"]
+[else]
+	[l‘ğ ƒA="&'‘S—Í“Š‹…‚¾ ('+€”õ‚Q+')'" ƒC="&'“K“x‚É‚â‚é ('+€”õ‚P+')'" ƒE="&'Œ©‚Ä‚é‚¾‚¯ ('+€”õ‚O+')'"]
+[endif]
 [˜gÁ‹]
 [if exp=ƒA]
 	[‘Ì—Í •Ï‰»=&€”õ‚Q]
@@ -102,6 +109,10 @@
 [elsif exp=ƒE]
 	[‘Ì—Í •Ï‰»=&€”õ‚O]
 	[eval exp="¡“ú‚Ìi’» += i’»‚O"]
+[elsif exp=ƒG]
+	[BGM ‹È="•¶‰»Õ€”õ03.ogg" ‰¹—Ê=66]
+	[‘Ì—Í •Ï‰»=&€”õ‚R]
+	[eval exp="¡“ú‚Ìi’» += i’»‚R + f.ålŒö‰Á‘¬"]
 [endif]
 
 [call storage="scenario/ŒÂ•Ê/ƒ}ƒŠ.ks" cond="‘«Õ('ƒ}ƒŠQ‰Á') && !‘«Õ('•¶‰»Õ‚Ì”ƒ‚¢o‚µI—¹')"]
@@ -121,11 +132,12 @@
 [ch text="   ƒ}ƒŠ " cond="f.ƒ}ƒŠQ‰Á + f.ƒ}ƒŠµW"]
 [ch text="  ’j¶“k" cond="f.ƒ‚ƒu’jµW"]
 [ch text="  —¶“k" cond="f.ƒ‚ƒu—µW"][r]
-vŒ£“xF
+vŒ£“xF[style autoreturn=false]
 [font color=&FF‹­‰» cond=f.ålŒö‰Á‘¬]
 [ch text="&i’»‚Q + f.ålŒö‰Á‘¬ +'“ '" cond="ƒA"]
 [ch text="&i’»‚P + f.ålŒö‰Á‘¬ +'“ '" cond="ƒC"]
-[ch text="&i’»‚O + f.ålŒö‰Á‘¬ +'“ '" cond="ƒE"]
+[ch text="&i’»‚O +'“ '" cond="ƒE"]
+[ch text="&i’»‚R + f.ålŒö‰Á‘¬ +'“ '" cond="ƒG"]
 [font color=&FF•¶š]
 {  
 [font color=&FF‹­‰» cond=f.ƒJƒŒƒ“‰Á‘¬]
@@ -173,8 +185,8 @@
 
 [ch text="&'{  '+(i’»µW)+'“ '" cond="f.ƒ‚ƒu’jµW"]
 [ch text="&'{  '+(i’»µW)+'“ '" cond="f.ƒ‚ƒu—µW"]
-[r]
-i’»  F[emb exp="f.i’»"]“  ¨  [emb exp="f.i’» + ¡“ú‚Ìi’»"]“[next]
+[style autoreturn=true][r]
+i’»—¦F[emb exp="f.i’»"]“  ¨  [font color=&FF‹­‰»][emb exp="f.i’» + ¡“ú‚Ìi’»"]“[resetfont][next]
 [endnowait]
 [eval exp="f.i’»+=¡“ú‚Ìi’»"]
 [if exp="f.i’» >= 150"][ÀÑ‰ğœ –¼‘O=ÀÑ‚P‚XFi’»‚P‚T‚O“][endif]
@@ -185,7 +197,7 @@
 [iscript]
 f.ƒCƒYƒ~µW = f.ƒ}ƒ†µW = f.ƒJƒPƒ‹µW = f.ƒ~ƒhƒŠµW = f.ƒ}ƒŠµW = f.ƒ‚ƒu’jµW = f.ƒ‚ƒu—µW = 0;
 [endscript]
-
+[eval exp="f.•½“ú€”õ’† = 0"]
 [return]
 
 
@@ -265,6 +277,6 @@ f.ƒCƒYƒ~µW = f.ƒ}ƒ†µW = f.ƒJƒPƒ‹µW = f.ƒ~ƒhƒŠµW = f.ƒ}ƒŠµW = f.ƒ‚ƒu’j
 [if exp="f.ƒ‚ƒu’jµW"][eval exp="¡“ú‚Ìi’» += i’»µW"][endif]
 [if exp="f.ƒ‚ƒu—µW"][eval exp="¡“ú‚Ìi’» += i’»µW"][endif]
 
-[eval exp="ƒA=0,ƒC=0,ƒE=1"]
+[eval exp="ƒA=0,ƒC=0,ƒE=1,ƒG=0"]
 ;‘I‘ğˆƒE‚ğ‘I‚ñ‚¾‚Ì‚ğÄŒ»‚·‚é
 [jump target="*i’»•\¦"]
