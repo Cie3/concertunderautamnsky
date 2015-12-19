@@ -1,6 +1,7 @@
 [eval exp="人員計算()"]
 [jump target="*放課後レッスン" cond="f.放課後レッスン"]
 
+[eval exp="f.平日準備中 = 1"]
 [場面転換]
 [eval exp="var 今日の進捗 = 0"]
 [BGM 曲=文化祭準備01.ogg 音量=50 ループ]
@@ -193,7 +194,7 @@
 [iscript]
 f.イズミ招集 = f.マユ招集 = f.カケル招集 = f.ミドリ招集 = f.マリ招集 = f.モブ男招集 = f.モブ女招集 = 0;
 [endscript]
-
+[eval exp="f.平日準備中 = 0"]
 [return]
 
 
