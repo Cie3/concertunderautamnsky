@@ -87,7 +87,7 @@
 [ch text="  カケル" cond="f.カケル参加"]
 [ch text="  ミドリ" cond="f.ミドリ参加"]
 [ch text="   マリ " cond="f.マリ参加"][r]
-貢献度：
+貢献度：[style autoreturn=false]
 [font color=&色：強化 cond=f.主人公加速]
 [ch text="&進捗２ + f.主人公加速 +'％ '" cond="ア"]
 [ch text="&進捗１ + f.主人公加速 +'％ '" cond="イ"]
@@ -123,7 +123,7 @@
 	＋  [font color=&色：強化 cond=f.マリ加速][emb exp="進捗参加 + f.マリ加速"]％ [font color=&色：文字]
 [endif]
 
-[r]
+[style autoreturn=true][r]
 進捗  ：[emb exp="f.進捗"]％  →  [font color=&色：強化][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
 [endnowait]
 [モノローグ終了]

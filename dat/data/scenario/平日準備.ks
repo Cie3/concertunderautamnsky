@@ -128,7 +128,7 @@
 [ch text="   マリ " cond="f.マリ参加 + f.マリ招集"]
 [ch text="  男生徒" cond="f.モブ男招集"]
 [ch text="  女生徒" cond="f.モブ女招集"][r]
-貢献度：
+貢献度：[style autoreturn=false]
 [font color=&色：強化 cond=f.主人公加速]
 [ch text="&進捗２ + f.主人公加速 +'％ '" cond="ア"]
 [ch text="&進捗１ + f.主人公加速 +'％ '" cond="イ"]
@@ -181,7 +181,7 @@
 
 [ch text="&'＋  '+(進捗招集)+'％ '" cond="f.モブ男招集"]
 [ch text="&'＋  '+(進捗招集)+'％ '" cond="f.モブ女招集"]
-[r]
+[style autoreturn=true][r]
 進捗  ：[emb exp="f.進捗"]％  →  [font color=&色：強化][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
 [endnowait]
 [eval exp="f.進捗+=今日の進捗"]
