@@ -617,7 +617,7 @@ function manageSeed() {
 	var fill = 0; // 次に詰めるべき場所
 	// 種を詰める動作
 	for(var i = 0; i < count; i++) {
-		if(f.種期限[i] >= 0 && f.種[i] !==void) {
+		if(f.種期限[i] >= 0 && f.種[i] !==void && f.種[i][0] != '※') {
 			f.種[fill] = f.種[i];
 			f.種詳細[fill] = f.種詳細[i];
 			f.種期限[fill] = f.種期限[i];
@@ -636,7 +636,10 @@ function manageSeed() {
 // 種のインデックスを得るためには、findSeed(s)を使う。
 function useSeed(idx) {
 	if(idx == -1 || idx >= f.種.count) return;
-	if(!f.種無限[idx]) f.種[idx] = void;
+	if(!f.種無限[idx]) {
+		f.種[idx] = '※使用済：' + f.種[idx];
+		f.種期限[idx] = -1; // 使用済みであることを明示
+	}
 }
 
 function countSeed() {
@@ -1106,13 +1109,13 @@ f.体力 = Math.min(f.体力, f.生命);
 		[endif]
 
 		[emb exp= "f.種[i]"]
-
-		[if exp="f.種期限[i] == 0"]（今日まで、
-		[else]（あと[emb exp= "f.種期限[i]"]日、
-		[endif]
-		
-		[if exp="f.種無限[i]"]回数制限なし）
-		[else]１回限り）
+		[if exp="f.種期限[i] > -1"]
+			[if exp="f.種期限[i] == 0"]（今日まで、
+			[else]（あと[emb exp= "f.種期限[i]"]日、
+			[endif]
+			[if exp="f.種無限[i]"]回数制限なし）
+			[else]１回限り）
+			[endif]
 		[endif]
 		
 		[resetfont]
