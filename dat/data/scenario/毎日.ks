@@ -1,6 +1,9 @@
 
 [call storage=自宅朝.ks]
-[history output= true]
+; 2行目は[call storage=自宅朝.ks]に固定しないと戻り先ERRORになる。
+
+[eval exp="f.履歴許可 = true"]
+[history output=true]
 [ボタン表示]
 [if exp="f.曜日!='週末'"]
 	[call storage=登校.ks]
@@ -28,7 +31,8 @@
 	[endif]
 [endif]
 [ボタン表示自室]
-[history output= false]
+[eval exp="f.履歴許可 = false"]
+[history output=false]
 [call storage= 自宅夜.ks]
 
 [jump storage= 毎日.ks]

@@ -64,7 +64,7 @@
 [四択 ア= 活動開始！  イ= 会話の種  ウ= 今日は何の日  エ= セーブ]
 [if exp= ア]
 [elsif exp= イ]
-	[call target=*会話の種]
+	[call target=*会話の種表示 storage="macro.ks"]
 	[jump target=*朝]
 [elsif exp= ウ]
 	[if exp= "f.日>0"]文化祭まで、あと[emb exp= "f.日"]日か。[n][endif]
@@ -126,56 +126,4 @@
 [endif]
 
 [枠消去]
-[return]
-
-*会話の種
-	[eval exp="var i=0, j=countSeed()"]
-	[position layer= message0 frame= image/テキストボックス縦長.png  left= 180  top= 50  margint= 13  marginl= 40]
-	[if exp= "j == 0"]
-		[nowait]
-		現在、会話の種を所持していません。[r]
-		[r]
-		会話の種は、誰かと会話をすることで手に入り、[r]
-		他の人に使うことで、シナリオを進めることができます。[r]
-		[r]
-		使用期限があるので、タイミングを逃さないようにしましょう。
-		[endnowait]
-	[endif]
-*ループA
-	[if exp= "i < j"]
-		[nowait]
-		[if exp= "i % 6 == 0"]
-			会話の種：[emb exp= "j"][r][r]
-		[endif]
-		[emb exp= "i+1"].
-
-		[if exp="f.種無限[i]"][font color=&色：種無限２]
-		[else][font color=&色：種２]
-		[endif]
-
-		[emb exp= "f.種[i]"]
-
-		[if exp="f.種期限[i] == 0"]（今日まで、
-		[else]（あと[emb exp= "f.種期限[i]"]日、
-		[endif]
-		
-		[if exp="f.種無限[i]"]回数制限なし）
-		[else]１回限り）
-		[endif]
-		
-		[resetfont]
-		[font size= 20][r]
-		[emb exp= "'     ' + f.種詳細[i]"]
-		[eval exp= "i++"]
-		[resetfont]
-		[if exp= "i % 6 == 0 && i < j"]
-			[next]
-		[elsif exp= "i < j"]
-			[r][r]
-		[endif]
-		[endnowait]
-		[jump target= *ループA]
-	[endif]
-	[next]
-	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40]
 [return]
