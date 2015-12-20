@@ -61,11 +61,22 @@
 [wb]
 [BGM 曲= 眠れR.ogg  ループ= 0  音量= 50]
 
+*次の日へ
+[eval exp="f.日-=1"]
+[if exp="f.曜日=='平日２'"][eval exp="f.曜日='週末'"]
+[elsif exp="f.曜日=='平日１'"][eval exp="f.曜日='平日２'"]
+[else]
+	[eval exp="f.曜日='平日１', f.週+=1"]
+	[if exp="f.週>4"][eval exp="f.週=1, f.月+=1"]
+	[endif]
+[endif]
+
+[eval exp="日付表示(0)"]
 [背景 画像= 黒  時間= 5000]
 [wt]
 [wait time= 1000]
 
-[jump storage="ゲームオーバー.ks" target="*ed2" cond="f.カレンデート != 0 && f.マリデート"]
+[jump storage="ゲームオーバー.ks" target="*ed2" cond="f.カレンデート > 0 && f.マリデート > 0"]
 *回復
 
 [睡眠回復]

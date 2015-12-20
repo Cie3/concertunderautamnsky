@@ -26,8 +26,10 @@
 [SE 音=チュンチュン.ogg ループ=0 音量=50]
 [枠]
 [メッセージ]
+;体力棒を表示
 [体力 変化= 0]
-[nowait][emb exp="f.今日"] [emb exp="'(文化祭まであと' + f.日 + '日)'"][endnowait][next]
+[eval exp="日付表示()"]
+[nowait][emb exp="f.今日"] [emb exp="'(文化祭まであと ' + f.日 + '日)'"][endnowait][next]
 [eval exp="n=((new Date()).getTime()-n)\1000"]
 
 ;会話の種を１日進める

@@ -68,11 +68,14 @@ function モノローグ初期化() {
 ; 5……体力気力日付
 ; 9……モノローグ
 ; 10-13……体力棒
+; 14……日付
 
 [eval exp="var 黒棒"]
 [eval exp="var 赤棒"]
 [eval exp="var 黄棒"]
 [eval exp="var ハート"]
+[eval exp="var 日付"]
+[eval exp="var lay日付 = 14"]
 [eval exp="var システムボタン = true"]
 ;[eval exp="hasSeed('無効なタネ')"]
 
@@ -714,6 +717,35 @@ if(黒棒 !==void){
 }
 }
 
+// 0＝裏、1＝表
+function 日付表示(page) {
+	if(page === void) {
+		日付表示(0);
+		日付表示(1);
+		return;
+	}
+	var x = 16;
+	var y = 16;
+	if(日付 === void) {
+		日付 = new Array();
+	}
+	日付[0] = kag.back.layers[lay日付];
+	日付[1] = kag.fore.layers[lay日付];
+	var path = 'image/日付/日付' + f.日 + '.png';
+	日付[page].loadImages(%[storage:path]);
+	日付[page].setSizeToImageSize();
+	日付[page].visible = true;
+	日付[page].setPos(x, y);
+	日付[page].opacity = 255;
+}
+
+function 日付消去() {
+	if(日付 !== void) {
+		日付[0].visible = false;
+		日付[1].visible = false;
+	}
+}
+
 function 学力変化(変化) {
 f.学力 += 変化;
 f.学力 = Math.min((int)95, f.学力);
@@ -996,7 +1028,9 @@ f.体力 = Math.min(f.体力, f.生命);
 *タイトルに戻る
 [ボタン消去]
 [eval exp="棒消去()"]
+[eval exp="日付消去()"]
 [eval exp="kag.historyLayer.clear()"]
+[history enabled=false]
 [layopt layer=&layerモノローグ page=fore visible=false]
 [layopt layer=&layerモノローグ page=back visible=false]
 [BGM停止]
