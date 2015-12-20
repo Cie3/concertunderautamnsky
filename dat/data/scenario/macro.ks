@@ -129,8 +129,6 @@ function モノローグ初期化() {
 [transskip]
 [backlay layer=message0]
 [backlay layer=message1]
-[er][r][er]
-;[cancelskip]
 [endmacro]
 
 [macro name=履歴出力]
@@ -150,7 +148,7 @@ function モノローグ初期化() {
 
 [macro name=名前欄]
 [履歴出力 改行]
-[履歴出力 内容="&'＊' + mp.名前 + '＊'"]
+[履歴出力 内容="&'＊' + mp.名前 + '＊'" 改行]
 [current layer=message1 page=back]
 [style align=center]
 [nowait]
@@ -177,7 +175,6 @@ function モノローグ初期化() {
 [名前欄 自分 名前="&f.姓+f.名"]
 [transskip]
 [backlay layer=message1]
-[er][r][er]
 [endmacro]
 
 [macro name=モノローグ]
@@ -233,7 +230,6 @@ function モノローグ初期化() {
 [表情 画像=%画像]
 [backlay layer=message1]
 [backlay layer=1]
-[er][r][er]
 [endmacro]
 
 [macro name=人物消去]
@@ -252,7 +248,6 @@ function モノローグ初期化() {
 [表情左 画像=%画像 遠い=%遠い]
 [backlay layer=message1]
 [backlay layer=2]
-[er][r][er]
 [endmacro]
 
 [macro name=人物左遠い]
@@ -275,7 +270,6 @@ function モノローグ初期化() {
 [表情右 画像=%画像 遠い=%遠い]
 [backlay layer=message1]
 [backlay layer=3]
-[er][r][er]
 [endmacro]
 
 [macro name=人物右遠い]
@@ -977,6 +971,7 @@ if(inf) fontcolor = 色：種無限;
 [current layer=message2]
 [layopt layer=message2 page=fore visible=true]
 
+[history output=false]
 [style autoreturn=false]
 [if exp="idxSeed < 0"]
 	[font color=0x999999 size=&fontsize]会話の種を使う（[emb exp=体力消費量]）[r][[[emb exp=ア]][resetfont][r][r]
@@ -985,6 +980,7 @@ if(inf) fontcolor = 色：種無限;
 [endif]
 [link target=*f種選択イ][emb exp=イ][endlink][r]
 [style autoreturn=true]
+[history output=&f.履歴許可]
 [endnowait]
 
 [current layer=message0]
