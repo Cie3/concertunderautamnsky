@@ -242,7 +242,7 @@ class SystemButtonPlugin extends KAGPlugin
 		} else if(mode == 3) { // Ž©Žº
 			foreButtons[2].visible = true; // title
 			foreButtons[4].visible = true; // screen
-		} else if(mode == 4) {
+		} else if(mode == 4) { // Ží
 			foreButtons[0].visible = true; // back
 			foreButtons[1].visible = true; // auto
 			foreButtons[2].visible = true; // title
