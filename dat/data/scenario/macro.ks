@@ -1060,6 +1060,7 @@ f.体力 = Math.min(f.体力, f.生命);
 [eval exp="棒消去()"]
 [eval exp="日付消去()"]
 [eval exp="kag.historyLayer.clear()"]
+[eval exp="f.履歴許可=false"]
 [history enabled=false]
 [layopt layer=&layerモノローグ page=fore visible=false]
 [layopt layer=&layerモノローグ page=back visible=false]
