@@ -137,6 +137,7 @@ function モノローグ初期化() {
 [ch text=%内容]
 [if exp="mp.改行"][r][endif]
 [er]
+[current layer=message0]
 [endmacro]
 
 [macro name=履歴なし出力]
@@ -330,6 +331,7 @@ function モノローグ初期化() {
 [layopt layer=&layerモノローグ page=back visible=false]
 ;モノローグ終了
 [背景 画像=黒]
+[履歴出力 改行]
 [endmacro]
 
 [macro name=姓]
