@@ -69,13 +69,16 @@ function モノローグ初期化() {
 ; 9……モノローグ
 ; 10-13……体力棒
 ; 14……日付
+; 15……曜日
 
 [eval exp="var 黒棒"]
 [eval exp="var 赤棒"]
 [eval exp="var 黄棒"]
 [eval exp="var ハート"]
 [eval exp="var 日付"]
-[eval exp="var lay日付 = 14"]
+[eval exp="var lay日付 = 15"]
+[eval exp="var lay曜日 = 14"]
+[eval exp="var 曜日画像"]
 [eval exp="var システムボタン = true"]
 ;[eval exp="hasSeed('無効なタネ')"]
 
@@ -728,21 +731,31 @@ function 日付表示(page) {
 	var y = 16;
 	if(日付 === void) {
 		日付 = new Array();
+		曜日画像 = new Array();
 	}
 	日付[0] = kag.back.layers[lay日付];
 	日付[1] = kag.fore.layers[lay日付];
+	曜日画像[0] = kag.back.layers[lay曜日];
+	曜日画像[1] = kag.fore.layers[lay曜日];
 	var path = 'image/日付/日付' + f.日 + '.png';
 	日付[page].loadImages(%[storage:path]);
 	日付[page].setSizeToImageSize();
 	日付[page].visible = true;
 	日付[page].setPos(x, y);
 	日付[page].opacity = 255;
+	path = 'image/日付/曜日' + f.曜日 + '.png';
+	曜日画像[page].loadImages(%[storage:path]);
+	曜日画像[page].setSizeToImageSize();
+	曜日画像[page].visible = true;
+	曜日画像[page].setPos(x + 160, y - 20);
 }
 
 function 日付消去() {
 	if(日付 !== void) {
 		日付[0].visible = false;
 		日付[1].visible = false;
+		曜日画像[0].visible = false;
+		曜日画像[1].visible = false;
 	}
 }
 
