@@ -4,19 +4,25 @@
 
 [if exp="testplay"][eval exp="f.生命=40,f.体力=20"][endif]
 
+[jump target="*23" cond="f.日==23"]
+[jump target="*22" cond="f.日==22"]
+
+[jump target="*プラナリアは１本だけ" cond="f.イズミ栄養ドリンク == 1"]
+[jump target="*プラナリアは１本だけ" cond="f.ミドリ栄養ドリンク == 1"]
+[jump target="*プラナリアは１本だけ" cond="f.マリ栄養ドリンク == 1"]
+[jump target="*プラナリアは１本だけ" cond="f.マリ恋愛栄養ドリンク == 1"]
+[jump target="*プラナリアは１本だけ" cond="f.カレン恋愛栄養ドリンク == 1"]
+[jump target="*プラナリアは１本だけx"]
+*プラナリアは１本だけ
+[call target="*プラナリア"]
+*プラナリアは１本だけx
+
 [足跡デバッグ 名前=カケルは気づいた]
 [jump target="*カケルは気づいた" cond="足跡('カケルは気づいた') && !足跡('カケルミドリ参加')"]
 [足跡デバッグ 名前=部長の仕事]
 [jump target="*部長の仕事" cond="足跡('部長の仕事') && !足跡('マリ参加')"]
 [足跡デバッグ 名前=マリの告白]
 [jump target="*マリの告白" cond="足跡('マリの告白') && !足跡('マリカケル参加')"]
-[jump target="*23" cond="f.日==23"]
-[jump target="*22" cond="f.日==22"]
-[jump target="*プラナリア" cond="f.イズミ栄養ドリンク == 1"]
-[jump target="*プラナリア" cond="f.ミドリ栄養ドリンク == 1"]
-[jump target="*プラナリア" cond="f.マリ栄養ドリンク == 1"]
-[jump target="*プラナリア" cond="f.マリ恋愛栄養ドリンク == 1"]
-[jump target="*プラナリア" cond="f.カレン恋愛栄養ドリンク == 1"]
 
 *おはようランダム
 [iscript]
@@ -367,4 +373,6 @@ var rnd = f.おはようランダム;
 [メッセージ]
 俺は、全回復した！[cancelskip][next]
 [BGM 曲= 05日常.ogg ループ= 1 音量= 50]
+[人物消去]
+[枠消去]
 [return]

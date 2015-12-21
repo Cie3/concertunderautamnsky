@@ -68,20 +68,24 @@ function モノローグ初期化() {
 ; 5……体力気力日付
 ; 9……モノローグ
 ; 10-13……体力棒
+; 14……日付
+; 15……曜日
 
 [eval exp="var 黒棒"]
 [eval exp="var 赤棒"]
 [eval exp="var 黄棒"]
 [eval exp="var ハート"]
+[eval exp="var 日付"]
+[eval exp="var lay日付 = 15"]
+[eval exp="var lay曜日 = 14"]
+[eval exp="var 曜日画像"]
 [eval exp="var システムボタン = true"]
 ;[eval exp="hasSeed('無効なタネ')"]
 
 
 [macro name=n]
 [wait time=200]
-[history output=false]
-[r]
-[history output=true]
+[履歴なし出力 改行]
 [endmacro]
 
 [macro name=next]
@@ -125,39 +129,43 @@ function モノローグ初期化() {
 [transskip]
 [backlay layer=message0]
 [backlay layer=message1]
-[er][r][er]
-;[cancelskip]
+[endmacro]
+
+[macro name=履歴出力]
+[history output=&f.履歴許可]
+[current layer=message2 page=back]
+[ch text=%内容]
+[if exp="mp.改行"][r][endif]
+[er]
+[current layer=message0]
+[endmacro]
+
+[macro name=履歴なし出力]
+[history output=false]
+[emb exp="mp.内容"]
+[if exp="mp.改行"][r][endif]
+[history output=&f.履歴許可]
 [endmacro]
 
 [macro name=名前欄]
-[history output=true]
-[current layer=message0 page=back]
-[nowait]
-[er][r]＊ [ch text=%名前] ＊[er]
-[history output=false]
+[履歴出力 改行]
+[履歴出力 内容="&'＊' + mp.名前 + '＊'" 改行]
 [current layer=message1 page=back]
-[style align=center][ch text=%名前]
-[history output=true]
-[current layer=message0]
+[style align=center]
+[nowait]
+[履歴なし出力 内容="%名前"]
 [endnowait]
+[current layer=message0]
 [endmacro]
 
 [macro name=メッセージ]
+[履歴出力 改行]
 [position layer=message1 page=back frame="ネームボックス自分"]
 [position layer=message0 page=back frame="テキストボックス自分"]
 [layopt layer=message1 page=back visible=false]
 [transskip]
 [backlay layer=message1]
 [current layer=message0]
-[endmacro]
-
-[macro name=自分2]
-[メッセージ]
-[position layer=message1 page=back left=460]
-[layopt layer=message1 page=back visible=true]
-[名前欄 名前=自分]
-[backlay layer=message1]
-[er][r][er]
 [endmacro]
 
 [macro name=自分]
@@ -168,16 +176,11 @@ function モノローグ初期化() {
 [名前欄 自分 名前="&f.姓+f.名"]
 [transskip]
 [backlay layer=message1]
-[er][r][er]
 [endmacro]
 
 [macro name=モノローグ]
 [メッセージ]
-[history output=true]
-[current layer=message0 page=back]
-[er][r][er]
 [layopt layer=&layerモノローグ page=back visible=true]
-[current layer=message0]
 [transskip]
 [endmacro]
 
@@ -228,7 +231,6 @@ function モノローグ初期化() {
 [表情 画像=%画像]
 [backlay layer=message1]
 [backlay layer=1]
-[er][r][er]
 [endmacro]
 
 [macro name=人物消去]
@@ -247,7 +249,6 @@ function モノローグ初期化() {
 [表情左 画像=%画像 遠い=%遠い]
 [backlay layer=message1]
 [backlay layer=2]
-[er][r][er]
 [endmacro]
 
 [macro name=人物左遠い]
@@ -270,7 +271,6 @@ function モノローグ初期化() {
 [表情右 画像=%画像 遠い=%遠い]
 [backlay layer=message1]
 [backlay layer=3]
-[er][r][er]
 [endmacro]
 
 [macro name=人物右遠い]
@@ -331,6 +331,7 @@ function モノローグ初期化() {
 [layopt layer=&layerモノローグ page=back visible=false]
 ;モノローグ終了
 [背景 画像=黒]
+[履歴出力 改行]
 [endmacro]
 
 [macro name=姓]
@@ -546,10 +547,16 @@ function モノローグ初期化() {
 [eval exp="global.systembutton_object.setMode(3)"]
 [endmacro]
 
+[macro name=ボタン表示種]
+[eval exp="global.systembutton_object.setMode(4)"]
+[endmacro]
+
 [macro name=ボタン消去]
 [sysbtopt forevisible=false backvisible=false]
 [eval exp="global.systembutton_object.setMode(0)"]
 [endmacro]
+
+
 
 [macro name=タイトルに戻る]
 [jump storage=macro.ks target=*タイトルに戻る]
@@ -610,7 +617,7 @@ function manageSeed() {
 	var fill = 0; // 次に詰めるべき場所
 	// 種を詰める動作
 	for(var i = 0; i < count; i++) {
-		if(f.種期限[i] >= 0 && f.種[i] !==void) {
+		if(f.種期限[i] >= 0 && f.種[i] !==void && f.種[i][0] != '※') {
 			f.種[fill] = f.種[i];
 			f.種詳細[fill] = f.種詳細[i];
 			f.種期限[fill] = f.種期限[i];
@@ -629,7 +636,10 @@ function manageSeed() {
 // 種のインデックスを得るためには、findSeed(s)を使う。
 function useSeed(idx) {
 	if(idx == -1 || idx >= f.種.count) return;
-	if(!f.種無限[idx]) f.種[idx] = void;
+	if(!f.種無限[idx]) {
+		f.種[idx] = '※使用済：' + f.種[idx];
+		f.種期限[idx] = -1; // 使用済みであることを明示
+	}
 }
 
 function countSeed() {
@@ -712,6 +722,45 @@ if(黒棒 !==void){
 黄棒[1].visible = false;
 ハート[1].visible = false;
 }
+}
+
+// 0＝裏、1＝表
+function 日付表示(page) {
+	if(page === void) {
+		日付表示(0);
+		日付表示(1);
+		return;
+	}
+	var x = 16;
+	var y = 16;
+	if(日付 === void) {
+		日付 = new Array();
+		曜日画像 = new Array();
+	}
+	日付[0] = kag.back.layers[lay日付];
+	日付[1] = kag.fore.layers[lay日付];
+	曜日画像[0] = kag.back.layers[lay曜日];
+	曜日画像[1] = kag.fore.layers[lay曜日];
+	var path = 'image/日付/日付' + f.日 + '.png';
+	日付[page].loadImages(%[storage:path]);
+	日付[page].setSizeToImageSize();
+	日付[page].visible = true;
+	日付[page].setPos(x, y);
+	日付[page].opacity = 255;
+	path = 'image/日付/曜日' + f.曜日 + '.png';
+	曜日画像[page].loadImages(%[storage:path]);
+	曜日画像[page].setSizeToImageSize();
+	曜日画像[page].visible = true;
+	曜日画像[page].setPos(x + 160, y - 20);
+}
+
+function 日付消去() {
+	if(日付 !== void) {
+		日付[0].visible = false;
+		日付[1].visible = false;
+		曜日画像[0].visible = false;
+		曜日画像[1].visible = false;
+	}
 }
 
 function 学力変化(変化) {
@@ -820,18 +869,24 @@ len = Math.max(len, widthStr(エ));
 var wid = len * 38 + 20;
 [endscript]
 [nowait]
-[current layer=message0 page=back]
-[er][r][r][er][ch text="----- 選択肢 ---------------------"][r][er]
+[履歴出力 改行]
+[履歴出力 内容="┏━━━ 選択肢 ━━━━━━━━━━━┓" 改行]
+[if exp=ア!=''][履歴出力 内容="&'　' + ア" 改行][endif]
+[if exp=イ!=''][履歴出力 内容="&'　' + イ" 改行][endif]
+[if exp=ウ!=''][履歴出力 内容="&'　' + ウ" 改行][endif]
+[if exp=エ!=''][履歴出力 内容="&'　' + エ" 改行][endif]
+[履歴出力 内容="┗━━━━━━━━━━━━━━━━━━┛" 改行]
+[履歴出力 改行]
 [current layer=message2]
 [layopt layer=message2 page=fore visible=true]
 [style autoreturn=false]
+[history output=false]
 [if exp=ア!=''][link target=*f選択ア][emb exp="ア"][endlink][r][endif]
 [if exp=イ!=''][link target=*f選択イ][emb exp="イ"][endlink][r][endif]
 [if exp=ウ!=''][link target=*f選択ウ][emb exp="ウ"][endlink][r][endif]
 [if exp=エ!=''][link target=*f選択エ][emb exp="エ"][endlink][r][endif]
+[history output=&f.履歴許可]
 [style autoreturn=true]
-[current layer=message0 page=back]
-[er][ch text="----------------------------------"][r][er]
 [current layer=message0]
 [endnowait]
 [s]
@@ -858,8 +913,8 @@ var wid = len * 38 + 20;
 
 *f十二択
 [nowait]
-[current layer=message0 page=back]
-[er][r][r][er][ch text="----- 選択肢 ---------------------"][r][er]
+[履歴出力 改行]
+[履歴出力 内容="----- 選択肢 ---------------------" 改行]
 [current layer=message2]
 [position frame="選択枠セーブ" top=200]
 [font size=17]
@@ -879,8 +934,8 @@ var wid = len * 38 + 20;
 [if exp=シ!=''][link target=*f十二択合流 exp="clearChoice(), シ=true"][emb exp="シ"][endlink][r][endif]
 [resetfont]
 [style autoreturn=true]
-[current layer=message0 page=back]
-[er][ch text="----------------------------------"][r][er]
+[履歴出力 内容="----------------------------------" 改行]
+[履歴出力 改行]
 [current layer=message0]
 [endnowait]
 [s]
@@ -907,11 +962,21 @@ if(inf) fontcolor = 色：種無限;
 [endscript]
 [cancelskip]
 [nowait]
-[current layer=message0 page=back]
-[r][r][er][ch text="----- 選択肢 ---------------------"][r][er]
+[履歴出力 改行]
+[履歴出力 内容="┏━━━ 選択肢 ━━━━━━━━━━━┓" 改行]
+[if exp="idxSeed < 0"][履歴出力 内容="&'　会話の種は使えません'" 改行]
+[else][履歴出力 内容="&'　会話の種を使う'" 改行]
+[endif]
+[履歴出力 内容="&'　[' + ア + ']'" 改行]
+[履歴出力 改行]
+[if exp=イ!=''][履歴出力 内容="&'　' + イ" 改行][endif]
+[履歴出力 内容="┗━━━━━━━━━━━━━━━━━━┛" 改行]
+[履歴出力 改行]
+
 [current layer=message2]
 [layopt layer=message2 page=fore visible=true]
 
+[history output=false]
 [style autoreturn=false]
 [if exp="idxSeed < 0"]
 	[font color=0x999999 size=&fontsize]会話の種を使う（[emb exp=体力消費量]）[r][[[emb exp=ア]][resetfont][r][r]
@@ -920,9 +985,9 @@ if(inf) fontcolor = 色：種無限;
 [endif]
 [link target=*f種選択イ][emb exp=イ][endlink][r]
 [style autoreturn=true]
+[history output=&f.履歴許可]
 [endnowait]
-[current layer=message0 page=back]
-[er][ch text="----------------------------------"][r][er]
+
 [current layer=message0]
 [SE 音=選択肢.ogg 音量=60 buf=2]
 [s]
@@ -996,7 +1061,10 @@ f.体力 = Math.min(f.体力, f.生命);
 *タイトルに戻る
 [ボタン消去]
 [eval exp="棒消去()"]
+[eval exp="日付消去()"]
 [eval exp="kag.historyLayer.clear()"]
+[eval exp="f.履歴許可=false"]
+[history enabled=false]
 [layopt layer=&layerモノローグ page=fore visible=false]
 [layopt layer=&layerモノローグ page=back visible=false]
 [BGM停止]
@@ -1012,3 +1080,58 @@ f.体力 = Math.min(f.体力, f.生命);
 [枠消去]
 [背景 画像=黒 時間=400]
 [close]
+
+*会話の種表示
+	[history output=false]
+	[position layer=message2 visible=false]
+	[eval exp="var i=0, j=countSeed()"]
+	[position layer= message0 frame= image/テキストボックス縦長.png  left= 180  top= 50  margint= 13  marginl= 40]
+	[if exp= "j == 0"]
+		[nowait]
+		現在、会話の種を所持していません。[r]
+		[r]
+		会話の種は、誰かと会話をすることで手に入り、[r]
+		他の人に使うことで、シナリオを進めることができます。[r]
+		[r]
+		使用期限があるので、タイミングを逃さないようにしましょう。
+		[endnowait]
+	[endif]
+*ループA
+	[if exp= "i < j"]
+		[nowait]
+		[if exp= "i % 6 == 0"]
+			会話の種：[emb exp= "j"][r][r]
+		[endif]
+		[emb exp= "i+1"].
+
+		[if exp="f.種無限[i]"][font color=&色：種無限２]
+		[else][font color=&色：種２]
+		[endif]
+
+		[emb exp= "f.種[i]"]
+		[if exp="f.種期限[i] > -1"]
+			[if exp="f.種期限[i] == 0"]（今日まで、
+			[else]（あと[emb exp= "f.種期限[i]"]日、
+			[endif]
+			[if exp="f.種無限[i]"]回数制限なし）
+			[else]１回限り）
+			[endif]
+		[endif]
+		
+		[resetfont]
+		[font size= 20][r]
+		[emb exp= "'     ' + f.種詳細[i]"]
+		[eval exp= "i++"]
+		[resetfont]
+		[if exp= "i % 6 == 0 && i < j"]
+			[next]
+		[elsif exp= "i < j"]
+			[r][r]
+		[endif]
+		[endnowait]
+		[jump target= *ループA]
+	[endif]
+	[next]
+	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40]
+	[history output=&f.履歴許可]
+[return]

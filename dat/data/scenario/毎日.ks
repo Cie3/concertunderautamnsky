@@ -1,9 +1,9 @@
 
 [call storage=©‘î’©.ks]
-[history output= true]
-[if exp=f.“ú==0]
-	[jump storage=•¶‰»Õ“–“ú.ks]
-[endif]
+; 2s–Ú‚Í[call storage=©‘î’©.ks]‚ÉŒÅ’è‚µ‚È‚¢‚Æ–ß‚èæERROR‚É‚È‚éB
+
+[eval exp="f.—š—ğ‹–‰Â = true"]
+[history output=true]
 [ƒ{ƒ^ƒ“•\¦]
 [if exp="f.—j“ú!='T––'"]
 	[call storage=“oZ.ks]
@@ -31,20 +31,10 @@
 	[endif]
 [endif]
 [ƒ{ƒ^ƒ“•\¦©º]
-[history output= false]
+[eval exp="f.—š—ğ‹–‰Â = false"]
+[history output=false]
 [call storage= ©‘î–é.ks]
 
-[call target= *Ÿ‚Ì“ú‚Ö]
 [jump storage= –ˆ“ú.ks]
 
-*Ÿ‚Ì“ú‚Ö
-[eval exp="f.“ú-=1"]
-[if exp="f.—j“ú=='•½“ú‚Q'"][eval exp="f.—j“ú='T––'"]
-[elsif exp="f.—j“ú=='•½“ú‚P'"][eval exp="f.—j“ú='•½“ú‚Q'"]
-[else]
-	[eval exp="f.—j“ú='•½“ú‚P', f.T+=1"]
-	[if exp="f.T>4"][eval exp="f.T=1, f.Œ+=1"]
-	[endif]
-[endif]
-[return]
 

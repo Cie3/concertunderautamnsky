@@ -99,24 +99,27 @@ class SystemButtonPlugin extends KAGPlugin
 		
 		array.add(obj = new SystemButtonLayer(kag, parent, onBackButtonClick));
 		obj.loadImages('ボタンback');
-		obj.hint = 'これまでの文章を読み直します';
+		obj.hint = 'これまでの文章を読み直します'; // 0
 
 		array.add(obj = new SystemButtonLayer(kag, parent, onAutoButtonClick));
 		obj.loadImages('ボタンauto');
-		obj.hint = 'クリックせずに自動で進みます';
+		obj.hint = 'クリックせずに自動で進みます'; // 1
 
 		array.add(obj = new SystemButtonLayer(kag, parent, onTitleButtonClick));
 		obj.loadImages('ボタンtitle');
-		obj.hint = 'セーブせずにタイトルに戻ります';
+		obj.hint = 'セーブせずにタイトルに戻ります'; // 2
 
 		array.add(obj = new SystemButtonLayer(kag, parent, onExitButtonClick));
 		obj.loadImages('ボタンexit');
-		obj.hint = 'ゲームを終了します';
+		obj.hint = 'ゲームを終了します'; // 3
 
 		array.add(obj = new SystemButtonLayer(kag, parent, onScreenButtonClick));
 		obj.loadImages('ボタンscreen');
-		obj.hint = '全画面表示とウィンドウ表示を切り替えます';
+		obj.hint = '全画面表示とウィンドウ表示を切り替えます'; // 4
 
+		array.add(obj = new SystemButtonLayer(kag, parent, onSeedButtonClick));
+		obj.loadImages('ボタン種');
+		obj.hint = '会話の種を確認します'; // 5
 /*		// ボタン 0 (セーブ)
 		array.add(obj = new SystemButtonLayer(kag, parent, onSaveButtonClick));
 		obj.loadImages('YesButton'); // save ボタン用画像を読み込む
@@ -165,8 +168,15 @@ class SystemButtonPlugin extends KAGPlugin
 		foreButtons[3].setPos(40, 660);
 		backButtons[4].setPos(40, 600);
 		foreButtons[4].setPos(40, 600);
+		backButtons[5].setPos(40, 450);
+		foreButtons[5].setPos(40, 450);
 	}
 
+
+	function playSound() {
+		kag.tagHandlers.seopt(%["volume" => "40", "buf" => "1"]);
+		kag.tagHandlers.playse(%["storage" => "選択.ogg", "buf" => "1"]);	}
+	
 	function onSaveButtonClick()
 	{
 		// セーブ ボタンが押された
@@ -180,17 +190,19 @@ class SystemButtonPlugin extends KAGPlugin
 	}
 	
 	function onBackButtonClick() {
+		playSound();
 		kag.showHistory();
 	}
 	
 	function onAutoButtonClick() {
+		playSound();
 		kag.enterAutoMode();
 	}
 	
 	function onTitleButtonClick() {
+		playSound();
 		var res = askYesNo('セーブせずにタイトルに戻ります。', 'タイトルに戻る');
-		kag.tagHandlers.seopt(%["volume" => "40", "buf" => "1"]);
-		kag.tagHandlers.playse(%["storage" => "選択.ogg", "buf" => "1"]);
+		playSound();
 		if(res) {
 			kag.process('macro.ks', '*タイトルに戻る');
 		}
@@ -205,27 +217,37 @@ class SystemButtonPlugin extends KAGPlugin
 	}
 
 	function onExitButtonClick() {
+		playSound();
 		kag.process('macro.ks', '*終了処理');
+	}
+	
+	function onSeedButtonClick() {
+		playSound();
+		kag.process('macro.ks', '*会話の種表示');
 	}
 	
 	function setMode(mode) {
 		for(var i = foreButtons.count; i-->0;) {
-			foreButtons[i].visible = true;
+			foreButtons[i].visible = false;
 		}
-		if(mode == 0) {
-			for(var i = foreButtons.count; i-->0;) {
-				foreButtons[i].visible = false;
-			}
-		} else if(mode == 1) {
-			foreButtons[3].visible = false;
-		} else if(mode == 2) {
-			foreButtons[0].visible = false;
-			foreButtons[1].visible = false;
-			foreButtons[2].visible = false;
-		} else if(mode == 3) {
-			foreButtons[0].visible = false;
-			foreButtons[1].visible = false;
-			foreButtons[3].visible = false;
+		if(mode == 0) { // 全消去
+		} else if(mode == 1) { // いつもの
+			foreButtons[0].visible = true; // back
+			foreButtons[1].visible = true; // auto
+			foreButtons[2].visible = true; // title
+			foreButtons[4].visible = true; // screen
+		} else if(mode == 2) { // タイトル
+			foreButtons[3].visible = true; // exit
+			foreButtons[4].visible = true; // screen
+		} else if(mode == 3) { // 自室
+			foreButtons[2].visible = true; // title
+			foreButtons[4].visible = true; // screen
+		} else if(mode == 4) { // 種
+			foreButtons[0].visible = true; // back
+			foreButtons[1].visible = true; // auto
+			foreButtons[2].visible = true; // title
+			foreButtons[4].visible = true; // screen
+			foreButtons[5].visible = true; // 種
 		}
 		for(var i = foreButtons.count; i-->0;) {
 			backButtons[i].visible = foreButtons[i].visible;
