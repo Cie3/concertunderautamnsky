@@ -8,11 +8,10 @@
 
 [macro name=マリなにしてる]
 [nowait]
-[if exp=f.昼休み]
-	貫井さんが職員室から出てきた。
-[else]
-	貫井さんが書類とにらめっこしている。
-[endif][endnowait]
+[if exp=f.昼休み]貫井さんが職員室から出てきた。
+[else]貫井さんが書類とにらめっこしている。
+[endif]
+[endnowait]
 [endmacro]
 
 [場面転換]
