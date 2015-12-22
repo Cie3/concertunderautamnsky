@@ -51,13 +51,11 @@
 *朝
 
 [nowait]１日を始める前に、確認することは？[endnowait]
-
-[四択 ア= 活動開始！  イ= 会話の種  ウ= 今日は何の日  エ= セーブ]
+[ボタン表示自室種]
+[四択 ア= 活動開始！  イ= 今日は何の日  エ= セーブ]
+[ボタン表示自室]
 [if exp= ア]
 [elsif exp= イ]
-	[call target=*会話の種表示 storage="macro.ks"]
-	[jump target=*朝]
-[elsif exp= ウ]
 	[if exp= "f.日 == 23"]
 		今日は先生との面談の日だ。[n]
 		何か言われたりするんだろうか。[next]
@@ -103,9 +101,12 @@
 		[next]
 	[endif]
 	[jump target= *朝]
-[else]
+[else if exp=エ]
 	[call storage="セーブロード.ks" target="*セーブ"]
 	[jump target=*朝]
+[else]
+	[call storage="macro.ks" target="*会話の種表示"]
+	[jump target="*朝"]
 [endif]
 
 [if exp="typeof global.セーブ可能 != 'undefined'"]

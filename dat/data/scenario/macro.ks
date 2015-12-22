@@ -557,6 +557,10 @@ var lay顔 = 16;
 [eval exp="global.systembutton_object.setMode(4)"]
 [endmacro]
 
+[macro name="ボタン表示自室種"]
+[eval exp="global.systembutton_object.setMode(5)"]
+[endmacro]
+
 [macro name=ボタン消去]
 [sysbtopt forevisible=false backvisible=false]
 [eval exp="global.systembutton_object.setMode(0)"]
