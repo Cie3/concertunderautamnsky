@@ -1,9 +1,9 @@
 [eval exp="var セーブ可能 = true"]
 [eval exp= "f.今日=today()"]
-[eval exp= "tf.セーブラベル=f.姓 + f.名 + '(残り' + f.日 + '日)' + f.曜日"]
+[eval exp= "tf.セーブラベル=saveLabel()"]
 *セーブ|&tf.セーブラベル
 [eval exp= "f.今日=today()"]
-[eval exp= "tf.セーブラベル=f.姓 + f.名 + '(残り' + f.日 + '日)' + f.曜日"]
+[eval exp= "tf.セーブラベル=saveLabel()"]
 
 [jump storage="文化祭当日.ks" cond="f.日 == 0"]
 [if exp="f.日==19 && f.trial"]
@@ -52,7 +52,7 @@
 
 [nowait]１日を始める前に、確認することは？[endnowait]
 [ボタン表示自室種]
-[eval exp="var 進捗 = (f.日 >= 21 ? '' : '進捗率')"]
+[eval exp="var 進捗 = (f.日 >= 21 ? '' : '進捗率を見る')"]
 [四択 ア= 活動開始！  イ= 今日は何の日 ウ=&進捗  エ= セーブ]
 [ボタン表示自室]
 [if exp= ア]

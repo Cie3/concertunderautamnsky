@@ -916,6 +916,10 @@ function 顔位置→名前(ア, イ, ウ, 位置) {
 	return '';
 }
 
+function saveLabel() {
+	return f.姓 + f.名 + ' [' + f.進捗 + '％' + '] ' + '残り' + f.日 + '日 ' + f.曜日;
+}
+
 [endscript]
 
 [return]
@@ -976,9 +980,10 @@ var wid = len * 38 + 20;
 [履歴出力 内容="----- 選択肢 ---------------------" 改行]
 [current layer=message2]
 [position frame="選択枠セーブ" top=200]
-[font size=17]
 [layopt layer=message2 page=fore visible=true]
+[style linespacing=7]
 [style autoreturn=false]
+[font size=16]
 [if exp=ア!=''][link target=*f十二択合流 exp="clearChoice(), ア=true"][emb exp="ア"][endlink][r][endif]
 [if exp=イ!=''][link target=*f十二択合流 exp="clearChoice(), イ=true"][emb exp="イ"][endlink][r][endif]
 [if exp=ウ!=''][link target=*f十二択合流 exp="clearChoice(), ウ=true"][emb exp="ウ"][endlink][r][endif]
@@ -992,6 +997,7 @@ var wid = len * 38 + 20;
 [if exp=サ!=''][link target=*f十二択合流 exp="clearChoice(), サ=true"][emb exp="サ"][endlink][r][endif]
 [if exp=シ!=''][link target=*f十二択合流 exp="clearChoice(), シ=true"][emb exp="シ"][endlink][r][endif]
 [resetfont]
+[resetstyle]
 [style autoreturn=true]
 [履歴出力 内容="----------------------------------" 改行]
 [履歴出力 改行]
