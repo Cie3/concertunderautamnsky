@@ -48,20 +48,6 @@
 	[endif]
 [endif]
 
-[if exp="f.説明 == 1"]
-[eval exp="f.説明 = 100"]
-[人物 画像=なし 名前=操作ガイド]
-キーボード操作の説明をします。[next]
-[背景 画像=キーボード解説]
-使うキーは主に２つです。[n]
-[font color=0xFF4444]Enter …… 読み進める[resetfont]（クリックでもＯＫ）[n]
-[font color=0x6666FF]Ctrl  …… 高速読み飛ばし[resetfont][next]
-次のキーはあまり使いません。[n]
-[font color=0x33CC44]Ａ    …… 自動再生[n]
-[font color=0x888844]Space …… 文字表示枠を隠す[resetfont]（右クリックでもＯＫ）[resetfont][next]
-[メッセージ]
-[背景 画像=部屋]
-[endif]
 *朝
 
 [nowait]１日を始める前に、確認することは？[endnowait]
