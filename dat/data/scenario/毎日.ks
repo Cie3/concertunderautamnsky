@@ -18,7 +18,7 @@
 	[elsif exp="f.マリデート > 0"]
 		[call storage="scenario/個別/マリ.ks"]
 	[else]
-		[枠]
+		[枠][メッセージ]
 		今日は思いっきり休むぞ～！！[next]
 		[場面転換]
 		[休日回復]
