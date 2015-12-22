@@ -751,7 +751,7 @@ function “ú•t•\¦(page) {
 	—j“ú‰æ‘œ[page].loadImages(%[storage:path]);
 	—j“ú‰æ‘œ[page].setSizeToImageSize();
 	—j“ú‰æ‘œ[page].visible = true;
-	—j“ú‰æ‘œ[page].setPos(x + 160, y - 20);
+	—j“ú‰æ‘œ[page].setPos(x + 165, y - 25);
 }
 
 function “ú•tÁ‹() {
