@@ -1,4 +1,10 @@
 [iscript]
+var セーブスロット候補 = void;
+// セーブスロット候補 は、ロードしただけで書き換わるし、タイトルに戻ると消える
+// sf.セーブスロット前回の番号 は、セーブをしないと書き換わらない
+var オートセーブ可能 = 0;
+// ロードしてから１日過ぎないとオートセーブが発動しない
+
 if(sf.セーブスロットＡ===void) sf.セーブスロットＡ = 'データなし';
 if(sf.セーブスロットＢ===void) sf.セーブスロットＢ = 'データなし';
 if(sf.セーブスロットＣ===void) sf.セーブスロットＣ = 'データなし';
@@ -35,12 +41,17 @@ function numToSlot(n) {
 [endscript]
 
 [macro name=セーブスロット]
-[emb exp="numToSlot(sf.セーブスロット前回の番号)"]
+[if exp="セーブスロット候補 === void"]
+	;ロード画面、またはオートセーブからの再開
+	[emb exp="numToSlot(sf.セーブスロット前回の番号)"]
+[else]
+	[emb exp="numToSlot(セーブスロット候補)"]
+[endif]
 [endmacro]
 
 [macro name=上書き確認]
 [if exp="mp.スロット=='データなし'"]
-	[eval exp="tf.result = false, tf.セーブスロット候補 = mp.番号"]
+	[eval exp="tf.result = false, セーブスロット候補 = mp.番号"]
 [else]
 	[nowait]
 	すでにデータが存在します。[r]
@@ -50,7 +61,7 @@ function numToSlot(n) {
 	[if exp=ア]
 		[eval exp="tf.result = true"]
 	[else]
-		[eval exp="tf.result = false, tf.セーブスロット候補 = mp.番号"]
+		[eval exp="tf.result = false, セーブスロット候補 = mp.番号"]
 	[endif]
 [endif]
 [endmacro]
@@ -58,9 +69,8 @@ function numToSlot(n) {
 [return]
 
 *ロード
-
-[nowait]前回の続きは、[セーブスロット]のデータです。[endnowait]
 [eval exp="var 再開スロット = void"]
+[nowait]前回の続きは、[font color="&色：強化"]スロット[セーブスロット][resetfont] のデータです。[endnowait]
 [十二択 ア=&slota イ=&slotb ウ=&slotc エ=&slotd オ=&slote カ=&slotf キ=&slotg ク=&sloth ケ=&sloti コ=&slotj サ=&slotz シ=戻る]
 [if exp=ア][eval exp="再開スロット=1" cond="sf.セーブスロットＡ!='データなし'"]
 [elsif exp=イ][eval exp="再開スロット=2" cond="sf.セーブスロットＢ!='データなし'"]
@@ -73,15 +83,15 @@ function numToSlot(n) {
 [elsif exp=ケ][eval exp="再開スロット=9" cond="sf.セーブスロットＩ!='データなし'"]
 [elsif exp=コ][eval exp="再開スロット=10" cond="sf.セーブスロットＪ!='データなし'"]
 [elsif exp=サ][eval exp="再開スロット=0" cond="sf.セーブスロット自動!='データなし'"]
-[elsif exp=シ][return]
+[else][return]
 [endif]
 [return cond="再開スロット===void"]
 [BGM停止]
 [枠消去]
 [背景 画像=黒]
 [load place=0 cond="再開スロット==0"]
-[eval exp="tf.セーブスロット候補 = 再開スロット"]
-[load place=&tf.セーブスロット候補]
+[eval exp="セーブスロット候補 = 再開スロット"]
+[load place=&セーブスロット候補]
 
 
 *最初から
@@ -101,15 +111,20 @@ function numToSlot(n) {
 [elsif exp=ク][上書き確認 スロット="&sf.セーブスロットＨ" 番号=8]
 [elsif exp=ケ][上書き確認 スロット="&sf.セーブスロットＩ" 番号=9]
 [elsif exp=コ][上書き確認 スロット="&sf.セーブスロットＪ" 番号=10]
-[elsif exp=サ][eval cond="tf.result = true"]
+[else][eval cond="tf.result = true"]
 [endif]
 [return]
 
 *セーブ
-[call storage="セーブロード.ks"]
+;[call storage="セーブロード.ks"]
 [nowait]
-スロット[セーブスロット]のデータをプレイ中。[r]
-セーブ先はどこにしますか？
+[if exp="セーブスロット候補 != void"]
+	現在、[font color="&色：強化"]スロット[セーブスロット][resetfont] のデータをプレイ中。[r]
+[else]
+	現在、オートセーブをプレイ中。最後にセーブしたスロットは[emb exp="numToSlot(sf.セーブスロット前回の番号)"]です。[r]
+[endif]
+	セーブ先はどこにしますか？[r]
+	[font color="&色：強化"][emb exp="saveLabel()"][resetfont]
 [endnowait]
 [十二択 ア=&slota イ=&slotb ウ=&slotc エ=&slotd オ=&slote カ=&slotf キ=&slotg ク=&sloth ケ=&sloti コ=&slotj サ=戻る]
 [eval exp="tf.result = false"]
@@ -123,28 +138,26 @@ function numToSlot(n) {
 [elsif exp=ク][上書き確認 スロット="&sf.セーブスロットＨ" 番号=8]
 [elsif exp=ケ][上書き確認 スロット="&sf.セーブスロットＩ" 番号=9]
 [elsif exp=コ][上書き確認 スロット="&sf.セーブスロットＪ" 番号=10]
-[elsif exp=サ][eval cond="tf.result = true"]
-[else][return]
+[else][eval cond="tf.result = true"]
 [endif]
 [return cond="tf.result"]
 [call target="*セーブ実行"]
 [nowait]
 スロット[セーブスロット]にセーブしました。[next]
 [endnowait]
-
 [return]
 
 *セーブ実行
 
-[eval exp="sf.セーブスロット前回の番号 = tf.セーブスロット候補"]
-[eval exp="sf['セーブスロット' + numToSlot(tf.セーブスロット候補)] = tf.セーブラベル"]
-[save place="&tf.セーブスロット候補"]
+[eval exp="sf.セーブスロット前回の番号 = セーブスロット候補"]
+[eval exp="sf['セーブスロット' + numToSlot(セーブスロット候補)] = saveLabel()"]
+[save place="&セーブスロット候補"]
 
 [return]
 
 *オートセーブ
 
-[eval exp="sf.セーブスロット自動 = tf.セーブラベル"]
+[eval exp="sf.セーブスロット自動 = saveLabel()"]
 [save place="0"]
 
 [return]
