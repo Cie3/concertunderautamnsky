@@ -16,9 +16,26 @@
 [endif]
 
 [if exp= ア]
-	[if exp="f.日==22 && f.休日準備==0"]
-		最初の週は、休日準備の連絡をしてから寝よう。[next]
-		[jump target="*夜"]
+	[if exp="f.休日準備 == 0 && f.曜日 == '平日２'"]
+		[if exp="f.日 == 22"]
+			最初の週は、休日準備の連絡をしてから寝よう。[next]
+			[jump target="*夜"]
+		[elsif exp="f.日 == 1 || f.カレンデート + f.マリデート > 0"]
+			;文化祭前夜なら警告を出さない
+			;デートの予定があるなら警告を出さない
+		[else]
+			;準備をしていない場合は警告
+			[nowait]
+			休日準備をせずに、家で休みますか？[r]
+			（休んだ場合には生命力が回復します）
+			[endnowait]
+			[二択 ア=休日は休む イ=もう少し考え直す]
+			[if exp="ア"]
+				;そのまま
+			[else]
+				[jump target="*夜"]
+			[endif]
+		[endif]
 	[endif]
 [elsif exp= イ]
 	問題集を解いて[SE 音= 紙をめくる 音量= 50]勉強だ！
@@ -26,13 +43,17 @@
 	[next]
 	最初の点数は [emb exp="f.学力"]点[n]
 	[学力 変化= &自宅学習上昇]
-	今回の点数は [emb exp="f.学力"]点 か。[n]
-	[if exp= "f.学力 > 80"]これなら大丈夫だ。[cancelskip][next]
-	[elsif exp= "f.学力 > 70"]まあ、いい感じだ。[cancelskip][next]
-	[elsif exp= "f.学力 > 55"]微妙だな……[cancelskip][next]
-	[elsif exp= "f.学力 > 45"]まずい気がする。[cancelskip][next]
-	[else]ダメだなこりゃ。[cancelskip][next]
+	今回の点数は [font color="&色：強化" cond="f.成績 >= 85"][emb exp="f.学力"]点[resetfont] か。[n]
+	[if exp="f.学力 < 45"]ダメダメだ……
+	[elsif exp="f.学力 < 55"]このままではまずい……
+	[elsif exp="f.学力 < 65"]ちょっと心配だけど、まあ大丈夫か。
+	[elsif exp="f.学力 < 75"]まあまあ、無難な感じだ。
+	[elsif exp="f.学力 < 85"]結構いい感じだ。
+	[elsif exp="f.学力 < 100"]これならいける！
 	[endif]
+	[cancelskip]
+	[next]
+	
 	[jump target= *夜]
 [else]
 	[if exp= "f.マリデート != 0"]
@@ -50,7 +71,6 @@
 		「明日は文化祭の準備をするので集まってください」[n]
 		よし、クラス全体に連絡しておいたぞ。[next]
 		[eval exp= "f.休日準備 = 1"]
-		[実績解除 名前=実績１０：休日招集だ]
 	[endif]
 	[jump target= *夜]
 [endif]

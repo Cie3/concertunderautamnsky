@@ -1,14 +1,11 @@
-[eval exp="var セーブ可能 = true"]
+[eval exp="オートセーブ可能 = 1"]
+*セーブ|&saveLabel()
 [eval exp= "f.今日=today()"]
-[eval exp= "tf.セーブラベル=f.姓 + f.名 + '(残り' + f.日 + '日)' + f.曜日"]
-*セーブ|&tf.セーブラベル
-[eval exp= "f.今日=today()"]
-[eval exp= "tf.セーブラベル=f.姓 + f.名 + '(残り' + f.日 + '日)' + f.曜日"]
 
 [jump storage="文化祭当日.ks" cond="f.日 == 0"]
 [if exp="f.日==19 && f.trial"]
 	[背景 画像=ロゴ]
-	[枠]
+	[枠][メッセージ]
 	お疲れさまでした。ここで体験版は終了です。[n]
 	最後までプレイして頂き、ありがとうございました。[next]
 	
@@ -22,7 +19,6 @@
 [ボタン表示自室]
 [BGM停止]
 
-[eval exp="var n=(new Date()).getTime()"]
 [SE 音=チュンチュン.ogg ループ=0 音量=50]
 [枠]
 [メッセージ]
@@ -30,7 +26,7 @@
 [体力 変化= 0]
 [eval exp="日付表示()"]
 [nowait][emb exp="f.今日"] [emb exp="'(文化祭まであと ' + f.日 + '日)'"][endnowait][next]
-[eval exp="n=((new Date()).getTime()-n)\1000"]
+
 
 ;会話の種を１日進める
 [eval exp= "manageSeed()"]
@@ -39,10 +35,6 @@
 [背景 画像=部屋]
 [BGM 曲= 08自宅朝.ogg  ループ= 1  音量= 50]
 
-[if exp="n>50"]
-	あぶないあぶない、もうこんな時間か……[if exp="sf.朝寝坊の危機===void"]（★朝寝坊の危機）[endif][n]
-	[eval exp="sf.朝寝坊の危機=1"]
-[endif]
 
 [if exp="typeof global.セーブ可能 != 'undefined'"]
 	;ロードした直後はここを通らない
@@ -52,22 +44,17 @@
 		[call storage="セーブロード.ks" target="*セーブ実行" cond="!f.trial"]
 	[endif]
 [endif]
+
 *朝
 
 [nowait]１日を始める前に、確認することは？[endnowait]
-
-;	[種取得 名前=俺が立候補？ 詳細=前原先生にすすめられた。 期限=3]
-;	[種取得 名前=俺が立候補２？ 詳細=前原先生にすすめられた。 期限=4]
-;	[種取得 名前=俺が立候補３？ 詳細=前原先生にすすめられた。 期限=5]
-
-
-[四択 ア= 活動開始！  イ= 会話の種  ウ= 今日は何の日  エ= セーブ]
+[ボタン表示自室種]
+[eval exp="var 進捗 = (f.日 >= 21 ? '' : '進捗率を見る')"]
+[四択 ア= 活動開始！  イ= 今日は何の日 ウ=&進捗  エ= セーブ]
+[ボタン表示自室]
 [if exp= ア]
+	;endif まで直行
 [elsif exp= イ]
-	[call target=*会話の種表示 storage="macro.ks"]
-	[jump target=*朝]
-[elsif exp= ウ]
-	[if exp= "f.日>0"]文化祭まで、あと[emb exp= "f.日"]日か。[n][endif]
 	[if exp= "f.日 == 23"]
 		今日は先生との面談の日だ。[n]
 		何か言われたりするんだろうか。[next]
@@ -113,15 +100,29 @@
 		[next]
 	[endif]
 	[jump target= *朝]
-[else]
+[elsif exp=ウ]
+	文化祭準備の進み具合は…… [font color="&色：強化"][emb exp="f.進捗"]％[resetfont] か。[n]
+	[if exp="f.進捗 >= 100"]もう大丈夫そうだ。
+	[elsif exp="f.進捗 >= 80"]あとちょっとだ。
+	[elsif exp="f.進捗 >= 60"]結構できてきたな。
+	[elsif exp="f.進捗 >= 40"]軌道に乗ってきた。
+	[elsif exp="f.進捗 >= 20"]まだまだ道のりは長い。
+	[elsif exp="f.進捗 >= 0"]まだ始まったばかりだ。
+	[endif]
+	[next]
+	[jump target="*朝"]
+[elsif exp=エ]
 	[call storage="セーブロード.ks" target="*セーブ"]
 	[jump target=*朝]
+[else]
+	[jump target="*朝"]
 [endif]
 
-[if exp="typeof global.セーブ可能 != 'undefined'"]
+[if exp="オートセーブ可能 == 1"]
 	[if exp="f.日 != 23"]
 		;オートセーブする
 		[call storage="セーブロード.ks" target="*オートセーブ"]
+		[nowait]オートセーブされました。[endnowait][ま][ま][ま][ま][er]
 	[endif]
 [endif]
 

@@ -1,4 +1,5 @@
 ;http://www5d.biglobe.ne.jp/~gakai/ 背景素材
+;http://istoweb.sblo.jp/article/54829671.html キーボード
 ;http://taira-komori.jpn.org/freesound.html 倒れる音
 ;http://soundeffect-lab.info/sound/animal/ チュンチュン
 ;http://taira-komori.jpn.org/daily02.html 紙をめくる
@@ -22,6 +23,7 @@
 
 [if exp="f.trial"]
 	[枠]
+	[メッセージ]
 	本日は、創作視聴覚文化研究部のブースにお越し頂き、[n]
 	誠にありがとうございます。[next]
 	
@@ -48,6 +50,7 @@
 	[BGM 曲=空虚R.ogg ループ=0 音量=70]
 	[wait time=1000]
 	[枠]
+	[メッセージ]
 	俺は、[ルビ 読み=あき]秋[ルビ 読み=が]ヶ[ルビ 読み=や]谷高校に通っている２年生だ。[next]
 	学年が変わってから、そろそろ半年になる。[n]
 	正直、クラスには馴染めていない。[n]
@@ -107,6 +110,7 @@
 [endif]
 
 [枠]
+[メッセージ]
 [if exp=ア]
 	[call storage="セーブロード.ks" target="*ロード"]
 	[jump target=*メニュー]
@@ -367,6 +371,7 @@
 	[next]
 	[endnowait]
 	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40]
+	[backlay]
 	[jump target=*メニュー]
 [elsif exp=エ]
 	セーブデータ・やりこみデータを削除しますか？
@@ -385,7 +390,7 @@
 
 *edit
 [er]
-[枠]
+[枠][メッセージ]
 [nowait]
 俺の名前は 
 [edit color="0x0000FF" length=140 maxchars=14 name=f.姓] 
@@ -448,4 +453,28 @@
 	[タイトルに戻る]
 [endif]
 
+[二択 ア="ゲームの説明を聞く" イ="聞かない"]
+[if exp="ア"]
+[eval exp="f.説明 = 'キー操作'"]
+[枠][メッセージ]
+[背景 画像=キーボード解説]
+[人物 画像=なし 名前=操作ガイド]
+キーボード操作の説明をします。[next]
+使うキーは主に２つです。[n]
+[font color=0xFF4444]Enter …… 読み進める[resetfont]（クリックでもＯＫ）[n]
+[font color=0x6666FF]Ctrl  …… 押したままで高速読み飛ばし[resetfont][next]
+*読み飛ばし
+[font color=0x6666FF]Ctrlキー[resetfont]で高速読み飛ばしを使ってみましょう。[next]
+[font color=0x6666FF]Ctrlキー[resetfont]で高速読み飛ばしを使ってみましょう。[next]
+[font color=0x6666FF]Ctrlキー[resetfont]で高速読み飛ばしを使ってみましょう。[next]
+[jump target="*読み飛ばし" cond="kag.skipMode <= 1"]
+[cancelskip]
+[nowait]スキップされました。[endnowait][next]
+次のキーはあまり使いません。[n]
+[font color=0x22BB33]Ａ    …… 自動再生[n]
+[font color=0x887733]Space …… 文字表示枠を隠す[resetfont]（右クリックでもＯＫ）[resetfont][next]
+これでキーボード操作の説明を終わります。[next]
+[メッセージ]
+[背景 画像=黒]
+[endif]
 [jump storage=毎日.ks]

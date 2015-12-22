@@ -70,6 +70,8 @@ function モノローグ初期化() {
 ; 10-13……体力棒
 ; 14……日付
 ; 15……曜日
+; 16-18……誰と話す顔アイコン
+; 20-22……説明用画像
 
 [eval exp="var 黒棒"]
 [eval exp="var 赤棒"]
@@ -80,6 +82,10 @@ function モノローグ初期化() {
 [eval exp="var lay曜日 = 14"]
 [eval exp="var 曜日画像"]
 [eval exp="var システムボタン = true"]
+[iscript]
+var lay顔 = 16;
+var lay説明 = 20;
+[endscript]
 ;[eval exp="hasSeed('無効なタネ')"]
 
 
@@ -89,6 +95,23 @@ function モノローグ初期化() {
 [endmacro]
 
 [macro name=next]
+[wait time=200 cond=kag.autoMode]
+[wait time=200 cond=kag.autoMode]
+[wait time=200 cond=kag.autoMode]
+[wait time=200 cond=kag.autoMode]
+[wait time=200 cond=kag.autoMode]
+[l]
+[履歴出力 改行]
+[backlay layer=message0]
+[backlay layer=message1]
+[current layer="message0" page="back"]
+[er]
+[transskip]
+[current layer="message0" page="fore"]
+[backlay]
+[endmacro]
+
+[macro name=next2]
 [wait time=200 cond=kag.autoMode]
 [wait time=200 cond=kag.autoMode]
 [wait time=200 cond=kag.autoMode]
@@ -118,9 +141,9 @@ function モノローグ初期化() {
 [position layer=message0 page=back frame="テキストボックス自分"]
 [layopt layer=message0 page=back visible=true]
 [layopt layer=message1 page=back visible=false]
-[transskip]
-[backlay layer=message0]
-[backlay layer=message1]
+;[transskip]
+;[backlay layer=message0]
+;[backlay layer=message1]
 [endmacro]
 
 [macro name=枠消去]
@@ -134,7 +157,7 @@ function モノローグ初期化() {
 [macro name=履歴出力]
 [history output=&f.履歴許可]
 [current layer=message2 page=back]
-[ch text=%内容]
+[ch text=%内容 cond="mp.内容 != void"]
 [if exp="mp.改行"][r][endif]
 [er]
 [current layer=message0]
@@ -165,7 +188,7 @@ function モノローグ初期化() {
 [layopt layer=message1 page=back visible=false]
 [transskip]
 [backlay layer=message1]
-[current layer=message0]
+[current layer=message0][er]
 [endmacro]
 
 [macro name=自分]
@@ -176,6 +199,7 @@ function モノローグ初期化() {
 [名前欄 自分 名前="&f.姓+f.名"]
 [transskip]
 [backlay layer=message1]
+[current layer=message0][er]
 [endmacro]
 
 [macro name=モノローグ]
@@ -229,15 +253,16 @@ function モノローグ初期化() {
 [layopt layer=message1 page=back visible=true]
 [名前欄 名前=%名前]
 [表情 画像=%画像]
-[backlay layer=message1]
-[backlay layer=1]
+;[backlay layer=message1]
+;[backlay layer=1]
+[transskip]
 [endmacro]
 
 [macro name=人物消去]
 [layopt layer=1 page=back visible=false]
 [transskip]
-[current layer=message1][er][backlay layer=message1][current layer=message0]
-[backlay layer=1]
+;[current layer=message1][er][backlay layer=message1][current layer=message0]
+;[backlay layer=1]
 [endmacro]
 
 [macro name=人物左]
@@ -247,8 +272,9 @@ function モノローグ初期化() {
 [layopt layer=message1 page=back visible=true]
 [名前欄 名前=%名前]
 [表情左 画像=%画像 遠い=%遠い]
-[backlay layer=message1]
-[backlay layer=2]
+;[backlay layer=message1]
+;[backlay layer=2]
+[transskip]
 [endmacro]
 
 [macro name=人物左遠い]
@@ -258,8 +284,8 @@ function モノローグ初期化() {
 [macro name=人物左消去]
 [layopt layer=2 page=back visible=false]
 [transskip]
-[current layer=message1][er][backlay layer=message1][current layer=message0]
-[backlay layer=2]
+;[current layer=message1][er][backlay layer=message1][current layer=message0]
+;[backlay layer=2]
 [endmacro]
 
 [macro name=人物右]
@@ -269,8 +295,9 @@ function モノローグ初期化() {
 [layopt layer=message1 page=back visible=true]
 [名前欄 名前=%名前]
 [表情右 画像=%画像 遠い=%遠い]
-[backlay layer=message1]
-[backlay layer=3]
+;[backlay layer=message1]
+;[backlay layer=3]
+[transskip]
 [endmacro]
 
 [macro name=人物右遠い]
@@ -280,8 +307,8 @@ function モノローグ初期化() {
 [macro name=人物右消去]
 [layopt layer=3 page=back visible=false]
 [transskip]
-[current layer=message1][er][backlay layer=message1][current layer=message0]
-[backlay layer=3]
+;[current layer=message1][er][backlay layer=message1][current layer=message0]
+;[backlay layer=3]
 [endmacro]
 
 [macro name=人物全消去]
@@ -289,7 +316,7 @@ function モノローグ初期化() {
 [layopt layer=2 page=back visible=false]
 [layopt layer=3 page=back visible=false]
 [transskip]
-[current layer=message1][er][backlay layer=message1][current layer=message0]
+;[current layer=message1][er][backlay layer=message1][current layer=message0]
 [backlay layer=1]
 [backlay layer=2]
 [backlay layer=3]
@@ -509,6 +536,7 @@ function モノローグ初期化() {
 
 [macro name=不参加]
 [eval exp="f[mp.名前 + '不参加'] = 1"]
+[eval exp="f[mp.名前 + '招集'] = 0"]
 [メッセージ]
 [emb exp="fullname(mp.名前)"]が文化祭準備に参加しなくなった……[next]
 [endmacro]
@@ -551,6 +579,10 @@ function モノローグ初期化() {
 [eval exp="global.systembutton_object.setMode(4)"]
 [endmacro]
 
+[macro name="ボタン表示自室種"]
+[eval exp="global.systembutton_object.setMode(5)"]
+[endmacro]
+
 [macro name=ボタン消去]
 [sysbtopt forevisible=false backvisible=false]
 [eval exp="global.systembutton_object.setMode(0)"]
@@ -560,6 +592,31 @@ function モノローグ初期化() {
 
 [macro name=タイトルに戻る]
 [jump storage=macro.ks target=*タイトルに戻る]
+[endmacro]
+
+[macro name="誰と話す"]
+[eval exp="mp.位置 = (int)mp.位置"]
+;マクロ引数「位置」は0,1,2でなければならない。
+;マクロ引数「名前」は登場人物の名前でなければならない。
+[if exp="mp.位置 != 0 && mp.位置 != 1 && mp.位置 != 2"]
+	[eval exp="System.inform('エラー：顔アイコンの位置が0,1,2ではない')"]
+[endif]
+;layn: レイヤー番号
+[eval exp="var layn = lay顔 + mp.位置"]
+[eval exp="var path = 'fgimage/でふぉ/でふぉ小' + mp.名前"]
+[image storage="&path" layer="&layn" page="fore"]
+[eval exp="var idxLayer = 1001000 + 10000 + mp.位置"]
+[eval exp="var posx = 350 + mp.位置 * 20"]
+[eval exp="var posy = 272 + mp.位置 * 30"]
+[layopt layer="&layn" index="&idxLayer" left="&posx" top="&posy" visible="true"]
+[endmacro]
+
+[macro name="誰と話す消去"]
+[layopt layer="&lay顔 + 0" visible="false" page="back"]
+[layopt layer="&lay顔 + 1" visible="false" page="back"]
+[layopt layer="&lay顔 + 2" visible="false" page="back"]
+[transskip]
+[backlay]
 [endmacro]
 
 [iscript]
@@ -751,7 +808,7 @@ function 日付表示(page) {
 	曜日画像[page].loadImages(%[storage:path]);
 	曜日画像[page].setSizeToImageSize();
 	曜日画像[page].visible = true;
-	曜日画像[page].setPos(x + 160, y - 20);
+	曜日画像[page].setPos(x + 165, y - 25);
 }
 
 function 日付消去() {
@@ -857,6 +914,35 @@ function 人員計算() {
 	return r;
 }
 
+function 顔位置→名前(ア, イ, ウ, 位置) {
+	if(位置 == 0) {
+		if(ア != '') return ア;
+		if(イ != '') return イ;
+		if(ウ != '') return ウ;
+	}
+	if(位置 == 1) {
+		if(ア != '') {
+			if(イ != '') return イ;
+			if(ウ != '') return ウ;
+		}
+		if(イ != '') {
+			if(ウ != '') return ウ;
+		}
+	}
+	if(位置 == 2) {
+		if(ア != '') {
+			if(イ != '') {
+				if(ウ != '') return ウ;
+			}
+		}
+	}
+	return '';
+}
+
+function saveLabel() {
+	return f.姓 + f.名 + ' [' + f.進捗 + '％' + '] ' + '残り' + f.日 + '日 ' + f.曜日;
+}
+
 [endscript]
 
 [return]
@@ -917,9 +1003,10 @@ var wid = len * 38 + 20;
 [履歴出力 内容="----- 選択肢 ---------------------" 改行]
 [current layer=message2]
 [position frame="選択枠セーブ" top=200]
-[font size=17]
 [layopt layer=message2 page=fore visible=true]
+[style linespacing=7]
 [style autoreturn=false]
+[font size=16]
 [if exp=ア!=''][link target=*f十二択合流 exp="clearChoice(), ア=true"][emb exp="ア"][endlink][r][endif]
 [if exp=イ!=''][link target=*f十二択合流 exp="clearChoice(), イ=true"][emb exp="イ"][endlink][r][endif]
 [if exp=ウ!=''][link target=*f十二択合流 exp="clearChoice(), ウ=true"][emb exp="ウ"][endlink][r][endif]
@@ -933,6 +1020,7 @@ var wid = len * 38 + 20;
 [if exp=サ!=''][link target=*f十二択合流 exp="clearChoice(), サ=true"][emb exp="サ"][endlink][r][endif]
 [if exp=シ!=''][link target=*f十二択合流 exp="clearChoice(), シ=true"][emb exp="シ"][endlink][r][endif]
 [resetfont]
+[resetstyle]
 [style autoreturn=true]
 [履歴出力 内容="----------------------------------" 改行]
 [履歴出力 改行]
@@ -1032,7 +1120,7 @@ f.体力 = Math.min(f.体力, f.生命);
 
 *体力増加
 [eval exp=棒()]
-[eval exp="tf.変化 = f.生命 - f.体力" cond="tf.変化 > f.生命 - f.体力"]
+[eval exp="tf.変化 = f.生命 - f.体力" cond="tf.変化 + f.体力 > f.生命"]
 [if exp="tf.変化 > 0"]
 [eval exp="f.体力 += 1"]
 [eval exp="tf.変化 -= 1"]
@@ -1064,9 +1152,17 @@ f.体力 = Math.min(f.体力, f.生命);
 [eval exp="日付消去()"]
 [eval exp="kag.historyLayer.clear()"]
 [eval exp="f.履歴許可=false"]
+[cancelautomode]
 [history enabled=false]
-[layopt layer=&layerモノローグ page=fore visible=false]
 [layopt layer=&layerモノローグ page=back visible=false]
+[layopt layer="&lay顔 + 0" page=back visible=false]
+[layopt layer="&lay顔 + 1" page=back visible=false]
+[layopt layer="&lay顔 + 2" page=back visible=false]
+[layopt layer="&lay説明 + 0" page=back visible=false]
+[layopt layer="&lay説明 + 1" page=back visible=false]
+[layopt layer="&lay説明 + 2" page=back visible=false]
+; 文字表示枠の初期化
+[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40 page="back"]
 [BGM停止]
 [SE停止]
 [人物全消去]
@@ -1082,10 +1178,14 @@ f.体力 = Math.min(f.体力, f.生命);
 [close]
 
 *会話の種表示
+	;顔が残らないように
+	[誰と話す消去]
 	[history output=false]
 	[position layer=message2 visible=false]
 	[eval exp="var i=0, j=countSeed()"]
-	[position layer= message0 frame= image/テキストボックス縦長.png  left= 180  top= 50  margint= 13  marginl= 40]
+	[position layer= message0 frame= image/テキストボックス縦長.png  left= 180  top= 50  margint= 13  marginl= 40 page=back]
+	[transskip]
+	[backlay]
 	[if exp= "j == 0"]
 		[nowait]
 		現在、会話の種を所持していません。[r]
@@ -1132,6 +1232,8 @@ f.体力 = Math.min(f.体力, f.生命);
 		[jump target= *ループA]
 	[endif]
 	[next]
-	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40]
+	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40 page="back" visible="false"]
+	[transskip]
+	[backlay]
 	[history output=&f.履歴許可]
 [return]
