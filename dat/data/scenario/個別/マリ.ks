@@ -665,8 +665,15 @@
 
 *雑談
 [マリなにしてる]
-[三択 ア=雑談する イ=何か他の話題は……]
-[if exp=イ]
+[if exp="種がある || f.マリ参加 || f.マリ不参加 || f.マリ招集"]
+	[eval exp="var 強制招集 = ''"]
+[else]
+	[eval exp="var 強制招集 = '放課後の文化祭準備に呼ぶ（' + 招集消費 + ')'"]
+[endif]
+[三択 ア=雑談する イ=&強制招集 ウ=何か他の話題は……]
+[if exp="イ"]
+	[jump target="*強制招集"]
+[elsif exp="ウ"]
 	[jump target="*雑談2"]
 [endif]
 [人物 名前=貫井マリ 画像=マリ]
@@ -676,15 +683,7 @@
 [return]
 *雑談2
 
-[nowait]これ以上会話はないみたい。[endnowait]
-[if exp="種がある || f.マリ参加 || f.マリ招集 || f.マリ不参加"]
-	[next]
-[else]
-	[eval exp="var 呼ぶ = '放課後の文化祭準備に呼ぶ (' + 招集消費 + ')'"]
-	[二択 ア=&呼ぶ イ=呼ばない]
-	[jump target="*強制招集" cond=ア]
-[endif]
-[cm]
+[nowait]これ以上会話はないみたい。[endnowait][next]
 [jump target="*種開始"]
 
 *文化祭の買い出し
