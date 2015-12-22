@@ -22,7 +22,6 @@
 [ボタン表示自室]
 [BGM停止]
 
-[eval exp="var n=(new Date()).getTime()"]
 [SE 音=チュンチュン.ogg ループ=0 音量=50]
 [枠]
 [メッセージ]
@@ -30,7 +29,7 @@
 [体力 変化= 0]
 [eval exp="日付表示()"]
 [nowait][emb exp="f.今日"] [emb exp="'(文化祭まであと ' + f.日 + '日)'"][endnowait][next]
-[eval exp="n=((new Date()).getTime()-n)\1000"]
+
 
 ;会話の種を１日進める
 [eval exp= "manageSeed()"]
@@ -39,10 +38,6 @@
 [背景 画像=部屋]
 [BGM 曲= 08自宅朝.ogg  ループ= 1  音量= 50]
 
-[if exp="n>50"]
-	あぶないあぶない、もうこんな時間か……[if exp="sf.朝寝坊の危機===void"]（★朝寝坊の危機）[endif][n]
-	[eval exp="sf.朝寝坊の危機=1"]
-[endif]
 
 [if exp="typeof global.セーブ可能 != 'undefined'"]
 	;ロードした直後はここを通らない
@@ -52,14 +47,24 @@
 		[call storage="セーブロード.ks" target="*セーブ実行" cond="!f.trial"]
 	[endif]
 [endif]
+
+[if exp="f.説明 == 1"]
+[eval exp="f.説明 = 100"]
+[人物 画像=なし 名前=操作ガイド]
+キーボード操作の説明をします。[next]
+[背景 画像=キーボード解説]
+使うキーは主に２つです。[n]
+[font color=0xFF4444]Enter …… 読み進める[resetfont]（クリックでもＯＫ）[n]
+[font color=0x6666FF]Ctrl  …… 高速読み飛ばし[resetfont][next]
+次のキーはあまり使いません。[n]
+[font color=0x33CC44]Ａ    …… 自動再生[n]
+[font color=0x888844]Space …… 文字表示枠を隠す[resetfont]（右クリックでもＯＫ）[resetfont][next]
+[メッセージ]
+[背景 画像=部屋]
+[endif]
 *朝
 
 [nowait]１日を始める前に、確認することは？[endnowait]
-
-;	[種取得 名前=俺が立候補？ 詳細=前原先生にすすめられた。 期限=3]
-;	[種取得 名前=俺が立候補２？ 詳細=前原先生にすすめられた。 期限=4]
-;	[種取得 名前=俺が立候補３？ 詳細=前原先生にすすめられた。 期限=5]
-
 
 [四択 ア= 活動開始！  イ= 会話の種  ウ= 今日は何の日  エ= セーブ]
 [if exp= ア]
@@ -67,7 +72,6 @@
 	[call target=*会話の種表示 storage="macro.ks"]
 	[jump target=*朝]
 [elsif exp= ウ]
-	[if exp= "f.日>0"]文化祭まで、あと[emb exp= "f.日"]日か。[n][endif]
 	[if exp= "f.日 == 23"]
 		今日は先生との面談の日だ。[n]
 		何か言われたりするんだろうか。[next]

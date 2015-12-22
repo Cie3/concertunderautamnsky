@@ -1,4 +1,5 @@
 ;http://www5d.biglobe.ne.jp/~gakai/ 背景素材
+;http://istoweb.sblo.jp/article/54829671.html キーボード
 ;http://taira-komori.jpn.org/freesound.html 倒れる音
 ;http://soundeffect-lab.info/sound/animal/ チュンチュン
 ;http://taira-komori.jpn.org/daily02.html 紙をめくる
@@ -448,4 +449,6 @@
 	[タイトルに戻る]
 [endif]
 
+[二択 ア="ゲームの説明を聞く" イ="聞かない"]
+[eval exp="f.説明 = 1" cond="ア"]
 [jump storage=毎日.ks]
