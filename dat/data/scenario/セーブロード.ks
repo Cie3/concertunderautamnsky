@@ -152,7 +152,7 @@ function numToSlot(n) {
 [eval exp="sf.セーブスロット前回の番号 = セーブスロット候補"]
 [eval exp="sf['セーブスロット' + numToSlot(セーブスロット候補)] = saveLabel()"]
 [save place="&セーブスロット候補"]
-
+[eval exp="オートセーブ可能 = 0"]
 [return]
 
 *オートセーブ
