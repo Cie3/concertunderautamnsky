@@ -70,6 +70,7 @@ function モノローグ初期化() {
 ; 10-13……体力棒
 ; 14……日付
 ; 15……曜日
+; 16-18……誰と話す顔アイコン
 
 [eval exp="var 黒棒"]
 [eval exp="var 赤棒"]
@@ -80,6 +81,9 @@ function モノローグ初期化() {
 [eval exp="var lay曜日 = 14"]
 [eval exp="var 曜日画像"]
 [eval exp="var システムボタン = true"]
+[iscript]
+var lay顔 = 16;
+[endscript]
 ;[eval exp="hasSeed('無効なタネ')"]
 
 
@@ -563,6 +567,29 @@ function モノローグ初期化() {
 [jump storage=macro.ks target=*タイトルに戻る]
 [endmacro]
 
+[macro name="誰と話す"]
+[eval exp="mp.位置 = (int)mp.位置"]
+;マクロ引数「位置」は0,1,2でなければならない。
+;マクロ引数「名前」は登場人物の名前でなければならない。
+[if exp="mp.位置 != 0 && mp.位置 != 1 && mp.位置 != 2"]
+	[eval exp="System.inform('エラー：顔アイコンの位置が0,1,2ではない')"]
+[endif]
+;layn: レイヤー番号
+[eval exp="var layn = lay顔 + mp.位置"]
+[eval exp="var path = 'fgimage/でふぉ/でふぉ小' + mp.名前"]
+[image storage="&path" layer="&layn" page="fore"]
+[eval exp="var idxLayer = 1001000 + 10000 + mp.位置"]
+[eval exp="var posx = 350 + mp.位置 * 10"]
+[eval exp="var posy = 272 + mp.位置 * 30"]
+[layopt layer="&layn" index="&idxLayer" left="&posx" top="&posy" visible="true"]
+[endmacro]
+
+[macro name="誰と話す消去"]
+[layopt layer="&lay顔" visible="false"]
+[layopt layer="&lay顔 + 1" visible="false"]
+[layopt layer="&lay顔 + 2" visible="false"]
+[endmacro]
+
 [iscript]
 
 // 文字列が全角文字で何文字相当なのかを計測する
@@ -858,6 +885,31 @@ function 人員計算() {
 	return r;
 }
 
+function 顔位置→名前(ア, イ, ウ, 位置) {
+	if(位置 == 0) {
+		if(ア != '') return ア;
+		if(イ != '') return イ;
+		if(ウ != '') return ウ;
+	}
+	if(位置 == 1) {
+		if(ア != '') {
+			if(イ != '') return イ;
+			if(ウ != '') return ウ;
+		}
+		if(イ != '') {
+			if(ウ != '') return ウ;
+		}
+	}
+	if(位置 == 2) {
+		if(ア != '') {
+			if(イ != '') {
+				if(ウ != '') return ウ;
+			}
+		}
+	}
+	return '';
+}
+
 [endscript]
 
 [return]
@@ -1033,7 +1085,7 @@ f.体力 = Math.min(f.体力, f.生命);
 
 *体力増加
 [eval exp=棒()]
-[eval exp="tf.変化 = f.生命 - f.体力" cond="tf.変化 > f.生命 - f.体力"]
+[eval exp="tf.変化 = f.生命 - f.体力" cond="tf.変化 + f.体力 > f.生命"]
 [if exp="tf.変化 > 0"]
 [eval exp="f.体力 += 1"]
 [eval exp="tf.変化 -= 1"]
@@ -1083,6 +1135,8 @@ f.体力 = Math.min(f.体力, f.生命);
 [close]
 
 *会話の種表示
+	;顔が残らないように
+	[誰と話す消去]
 	[history output=false]
 	[position layer=message2 visible=false]
 	[eval exp="var i=0, j=countSeed()"]
