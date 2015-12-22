@@ -1,9 +1,6 @@
-[eval exp="var セーブ可能 = true"]
+[eval exp="オートセーブ可能 = 1"]
+*セーブ|&saveLabel()
 [eval exp= "f.今日=today()"]
-[eval exp= "tf.セーブラベル=saveLabel()"]
-*セーブ|&tf.セーブラベル
-[eval exp= "f.今日=today()"]
-[eval exp= "tf.セーブラベル=saveLabel()"]
 
 [jump storage="文化祭当日.ks" cond="f.日 == 0"]
 [if exp="f.日==19 && f.trial"]
@@ -121,10 +118,11 @@
 	[jump target="*朝"]
 [endif]
 
-[if exp="typeof global.セーブ可能 != 'undefined'"]
+[if exp="オートセーブ可能 == 1"]
 	[if exp="f.日 != 23"]
 		;オートセーブする
 		[call storage="セーブロード.ks" target="*オートセーブ"]
+		[nowait]オートセーブされました。[endnowait][ま][ま][er]
 	[endif]
 [endif]
 
