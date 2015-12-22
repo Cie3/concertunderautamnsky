@@ -125,7 +125,7 @@
 [endif]
 
 [style autoreturn=true][r]
-進捗率：[emb exp="f.進捗"]％  →  [font color=&色：強化][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
+進捗率：[emb exp="f.進捗"]％  →  [font color=&色：強化 cond="f.進捗 >= 100"][emb exp="f.進捗 + 今日の進捗"]％[resetfont][next]
 [endnowait]
 [eval exp="f.進捗+=今日の進捗"]
 [if exp="f.進捗 >= 150"][実績解除 名前=実績１９：進捗１５０％][endif]

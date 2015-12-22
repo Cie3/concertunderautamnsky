@@ -42,13 +42,17 @@
 	[next]
 	最初の点数は [emb exp="f.学力"]点[n]
 	[学力 変化= &自宅学習上昇]
-	今回の点数は [emb exp="f.学力"]点 か。[n]
-	[if exp= "f.学力 > 80"]これなら大丈夫だ。[cancelskip][next]
-	[elsif exp= "f.学力 > 70"]まあ、いい感じだ。[cancelskip][next]
-	[elsif exp= "f.学力 > 55"]微妙だな……[cancelskip][next]
-	[elsif exp= "f.学力 > 45"]まずい気がする。[cancelskip][next]
-	[else]ダメだなこりゃ。[cancelskip][next]
+	今回の点数は [font color="&色：強化" cond="f.成績 >= 85"][emb exp="f.学力"]点[resetfont] か。[n]
+	[if exp="f.学力 < 45"]ダメダメだ……
+	[elsif exp="f.学力 < 55"]このままではまずい……
+	[elsif exp="f.学力 < 65"]ちょっと心配だけど、まあ大丈夫か。
+	[elsif exp="f.学力 < 75"]まあまあ、無難な感じだ。
+	[elsif exp="f.学力 < 85"]結構いい感じだ。
+	[elsif exp="f.学力 < 100"]これならいける！
 	[endif]
+	[cancelskip]
+	[next]
+	
 	[jump target= *夜]
 [else]
 	[if exp= "f.マリデート != 0"]
