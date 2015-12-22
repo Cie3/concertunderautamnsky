@@ -71,6 +71,7 @@ function モノローグ初期化() {
 ; 14……日付
 ; 15……曜日
 ; 16-18……誰と話す顔アイコン
+; 20-22……説明用画像
 
 [eval exp="var 黒棒"]
 [eval exp="var 赤棒"]
@@ -101,10 +102,10 @@ var lay説明 = 20;
 [wait time=200 cond=kag.autoMode]
 [l]
 [履歴出力 改行]
+[backlay]
 [current layer="message0" page="back"]
 [er]
 [transskip]
-[backlay]
 [current layer="message0" page="fore"]
 [endmacro]
 
@@ -154,7 +155,7 @@ var lay説明 = 20;
 [macro name=履歴出力]
 [history output=&f.履歴許可]
 [current layer=message2 page=back]
-[ch text=%内容]
+[ch text=%内容 cond="mp.内容 != void"]
 [if exp="mp.改行"][r][endif]
 [er]
 [current layer=message0]
@@ -1147,9 +1148,15 @@ f.体力 = Math.min(f.体力, f.生命);
 [eval exp="日付消去()"]
 [eval exp="kag.historyLayer.clear()"]
 [eval exp="f.履歴許可=false"]
+[cancelautomode]
 [history enabled=false]
-[layopt layer=&layerモノローグ page=fore visible=false]
 [layopt layer=&layerモノローグ page=back visible=false]
+[layopt layer="&lay顔 + 0" page=back visible=false]
+[layopt layer="&lay顔 + 1" page=back visible=false]
+[layopt layer="&lay顔 + 2" page=back visible=false]
+[layopt layer="&lay説明 + 0" page=back visible=false]
+[layopt layer="&lay説明 + 1" page=back visible=false]
+[layopt layer="&lay説明 + 2" page=back visible=false]
 [BGM停止]
 [SE停止]
 [人物全消去]
@@ -1218,5 +1225,6 @@ f.体力 = Math.min(f.体力, f.生命);
 	[endif]
 	[next]
 	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40]
+	[backlay]
 	[history output=&f.履歴許可]
 [return]

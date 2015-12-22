@@ -371,6 +371,7 @@
 	[next]
 	[endnowait]
 	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40]
+	[backlay]
 	[jump target=*メニュー]
 [elsif exp=エ]
 	セーブデータ・やりこみデータを削除しますか？
