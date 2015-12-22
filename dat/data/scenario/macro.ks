@@ -514,6 +514,7 @@ var lay顔 = 16;
 
 [macro name=不参加]
 [eval exp="f[mp.名前 + '不参加'] = 1"]
+[eval exp="f[mp.名前 + '招集'] = 0"]
 [メッセージ]
 [emb exp="fullname(mp.名前)"]が文化祭準備に参加しなくなった……[next]
 [endmacro]
