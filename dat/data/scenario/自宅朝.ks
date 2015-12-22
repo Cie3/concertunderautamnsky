@@ -52,9 +52,11 @@
 
 [nowait]１日を始める前に、確認することは？[endnowait]
 [ボタン表示自室種]
-[四択 ア= 活動開始！  イ= 今日は何の日  エ= セーブ]
+[eval exp="var 文化祭準備の進捗 = (f.日 >= 21 ? '' : '文化祭準備の進捗')"]
+[四択 ア= 活動開始！  イ= 今日は何の日 ウ=&文化祭準備の進捗  エ= セーブ]
 [ボタン表示自室]
 [if exp= ア]
+	;endif まで直行
 [elsif exp= イ]
 	[if exp= "f.日 == 23"]
 		今日は先生との面談の日だ。[n]
@@ -101,11 +103,12 @@
 		[next]
 	[endif]
 	[jump target= *朝]
-[else if exp=エ]
+[elsif exp=ウ]
+	文化祭準備は…… [font color="&色：強化"][emb exp="f.進捗"]％[resetfont] 進んでいる。[next]
+[elsif exp=エ]
 	[call storage="セーブロード.ks" target="*セーブ"]
 	[jump target=*朝]
 [else]
-	[call storage="macro.ks" target="*会話の種表示"]
 	[jump target="*朝"]
 [endif]
 

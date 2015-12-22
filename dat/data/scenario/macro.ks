@@ -83,6 +83,7 @@ function モノローグ初期化() {
 [eval exp="var システムボタン = true"]
 [iscript]
 var lay顔 = 16;
+var lay説明 = 20;
 [endscript]
 ;[eval exp="hasSeed('無効なタネ')"]
 
