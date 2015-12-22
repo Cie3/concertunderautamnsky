@@ -67,7 +67,7 @@ var n = f.日;
 [endif]
 
 [if exp="f.説明 == 'キー操作'"]
-	[eval exp="f.授業"]
+	[eval exp="f.説明 = '授業'"]
 	[image layer="&lay説明" storage="説明選択肢" visible="true" opacity="191"]
 	[backlay layer="&lay説明"]
 	[next]
@@ -104,7 +104,7 @@ var n = f.日;
 	この和歌でなぜ「ふる」が仮名で書いてあるかというと[r]
 	鈴を振るの「ふる」と涙が雨のように「降る」のを掛けた……[endnowait]
 	[layopt layer="&lay説明" visible="false"]
-	[backlay layer="lay説明"]
+	[backlay layer="&lay説明"]
 [endif]
 
 [eval exp="var ア授業２ = '真面目にノートをとる (' + 授業２消費 + ')'"]
