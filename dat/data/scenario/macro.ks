@@ -585,7 +585,7 @@ var lay説明 = 20;
 [eval exp="var path = 'fgimage/でふぉ/でふぉ小' + mp.名前"]
 [image storage="&path" layer="&layn" page="fore"]
 [eval exp="var idxLayer = 1001000 + 10000 + mp.位置"]
-[eval exp="var posx = 350 + mp.位置 * 10"]
+[eval exp="var posx = 350 + mp.位置 * 20"]
 [eval exp="var posy = 272 + mp.位置 * 30"]
 [layopt layer="&layn" index="&idxLayer" left="&posx" top="&posy" visible="true"]
 [endmacro]
