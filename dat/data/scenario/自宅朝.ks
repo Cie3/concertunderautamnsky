@@ -123,6 +123,9 @@
 		;オートセーブする
 		[call storage="セーブロード.ks" target="*オートセーブ"]
 		[nowait]オートセーブされました。[endnowait][ま][ま][ま][ま][er]
+	[else]
+		;初日セーブ
+		[call storage="セーブロード.ks" target="*セーブ実行"]
 	[endif]
 [endif]
 
