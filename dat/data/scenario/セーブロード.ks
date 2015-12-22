@@ -124,6 +124,7 @@ function numToSlot(n) {
 [elsif exp=ケ][上書き確認 スロット="&sf.セーブスロットＩ" 番号=9]
 [elsif exp=コ][上書き確認 スロット="&sf.セーブスロットＪ" 番号=10]
 [elsif exp=サ][eval cond="tf.result = true"]
+[else][return]
 [endif]
 [return cond="tf.result"]
 [call target="*セーブ実行"]
