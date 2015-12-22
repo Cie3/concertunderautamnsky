@@ -94,7 +94,8 @@ function ƒ‚ƒmƒ[ƒO‰Šú‰»() {
 [wait time=200 cond=kag.autoMode]
 [wait time=200 cond=kag.autoMode]
 [wait time=200 cond=kag.autoMode]
-[l][r][er]
+[l][r]
+[er]
 [endmacro]
 
 [macro name=ŠÔ]
