@@ -17,17 +17,22 @@ if(sf.セーブスロットＩ===void) sf.セーブスロットＩ = 'データなし';
 if(sf.セーブスロットＪ===void) sf.セーブスロットＪ = 'データなし';
 if(sf.セーブスロット自動===void) sf.セーブスロット自動 = 'データなし';
 
-var slota = 'Ａ：' + sf.セーブスロットＡ;
-var slotb = 'Ｂ：' + sf.セーブスロットＢ;
-var slotc = 'Ｃ：' + sf.セーブスロットＣ;
-var slotd = 'Ｄ：' + sf.セーブスロットＤ;
-var slote = 'Ｅ：' + sf.セーブスロットＥ;
-var slotf = 'Ｆ：' + sf.セーブスロットＦ;
-var slotg = 'Ｇ：' + sf.セーブスロットＧ;
-var sloth = 'Ｈ：' + sf.セーブスロットＨ;
-var sloti = 'Ｉ：' + sf.セーブスロットＩ;
-var slotj = 'Ｊ：' + sf.セーブスロットＪ;
-var slotz = '自動：' + sf.セーブスロット自動;
+var slota, slotb, slotc, slotd, slote, slotf, slotg, slotg, sloth, sloti, slotj, slotz;
+
+function updateSlotName() {
+	slota = 'Ａ：' + sf.セーブスロットＡ;
+	slotb = 'Ｂ：' + sf.セーブスロットＢ;
+	slotc = 'Ｃ：' + sf.セーブスロットＣ;
+	slotd = 'Ｄ：' + sf.セーブスロットＤ;
+	slote = 'Ｅ：' + sf.セーブスロットＥ;
+	slotf = 'Ｆ：' + sf.セーブスロットＦ;
+	slotg = 'Ｇ：' + sf.セーブスロットＧ;
+	sloth = 'Ｈ：' + sf.セーブスロットＨ;
+	sloti = 'Ｉ：' + sf.セーブスロットＩ;
+	slotj = 'Ｊ：' + sf.セーブスロットＪ;
+	slotz = '自動：' + sf.セーブスロット自動;
+}
+updateSlotName();
 
 function numToSlot(n) {
 	if(tf.numToSlot === void) {
@@ -153,6 +158,7 @@ function numToSlot(n) {
 [eval exp="sf['セーブスロット' + numToSlot(セーブスロット候補)] = saveLabel()"]
 [save place="&セーブスロット候補"]
 [eval exp="オートセーブ可能 = 0"]
+[eval exp="updateSlotName()"]
 [return]
 
 *オートセーブ
