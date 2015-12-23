@@ -282,6 +282,9 @@ f.ƒCƒYƒ~µW = f.ƒ}ƒ†µW = f.ƒJƒPƒ‹µW = f.ƒ~ƒhƒŠµW = f.ƒ}ƒŠµW = f.ƒ‚ƒu’j
 [if exp="f.ƒ‚ƒu’jµW"][eval exp="¡“ú‚Ìi’» += i’»µW"][endif]
 [if exp="f.ƒ‚ƒu—µW"][eval exp="¡“ú‚Ìi’» += i’»µW"][endif]
 
+[eval exp="var ŠJn‘O‚Ìi’» = f.i’»"]
+[eval exp="f.i’» += ¡“ú‚Ìi’»"]
+
 [eval exp="ƒA=0,ƒC=0,ƒE=1,ƒG=0"]
 ;‘I‘ğˆƒE‚ğ‘I‚ñ‚¾‚Ì‚ğÄŒ»‚·‚é
 [jump target="*i’»•\¦"]
