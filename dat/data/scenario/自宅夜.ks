@@ -43,7 +43,7 @@
 	[next]
 	最初の点数は [emb exp="f.学力"]点[n]
 	[学力 変化= &自宅学習上昇]
-	今回の点数は [font color="&色：強化" cond="f.成績 >= 85"][emb exp="f.学力"]点[resetfont] か。[n]
+	今回の点数は [font color="&色：強化" cond="f.学力 >= 85"][emb exp="f.学力"]点[resetfont] か。[n]
 	[if exp="f.学力 < 45"]ダメダメだ……
 	[elsif exp="f.学力 < 55"]このままではまずい……
 	[elsif exp="f.学力 < 65"]ちょっと心配だけど、まあ大丈夫か。
