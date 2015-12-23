@@ -122,7 +122,7 @@
 	[if exp="f.日 != 23"]
 		;オートセーブする
 		[call storage="セーブロード.ks" target="*オートセーブ"]
-		[nowait]オートセーブされました。[endnowait][ま][ま][ま][ま][er]
+		[nowait]オートセーブしました。[endnowait][ま][ま][ま][ま][er]
 	[else]
 		;初日セーブ
 		[call storage="セーブロード.ks" target="*セーブ実行"]

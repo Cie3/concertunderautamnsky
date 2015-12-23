@@ -244,6 +244,8 @@ var n = f.日;
 	[endif]
 	[cancelskip]
 	[next]
+	[elsif exp="f.試験の点数 >= 50"]
+		[実績解除 名前=実績８：赤点水平飛行]
 	[モノローグ終了]
 [endif]
 
