@@ -335,12 +335,12 @@
 	[endif][r]
 	　　　　　　　　　　　　　　　　　　　　　[font color=0x777777]
 	　　進捗記録：[emb exp="sf.ハイスコア進捗３"]％
-	[emb exp="scoreSpacer(sf.ハイスコア進捗９)"]成績記録：[emb exp="sf.ハイスコア成績３"]点[r]
+	[emb exp="scoreSpacer(sf.ハイスコア進捗３)"]成績記録：[emb exp="sf.ハイスコア成績３"]点[r]
 
 	[if exp="sf.エンド４：三人の精鋭 !==void"][font color=&色：種２]
 		４. 三人の精鋭………………★カレン・ヨシオと３人でクリア
 	[else][font color=&色：文字]
-		４. 三人の？？………………　皆の助けなんて必要ない
+		４. 三人の？？………………　俺たちだけでなんとかする
 	[endif][r]
 	　　　　　　　　　　　　　　　　　　　　　[font color=0x777777]
 	　　進捗記録：[emb exp="sf.ハイスコア進捗４"]％
