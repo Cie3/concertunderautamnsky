@@ -115,8 +115,11 @@
 	[eval exp="今日の進捗 += 進捗３ + f.主人公加速"]
 [endif]
 
-[call storage="scenario/個別/マリ.ks" cond="足跡('マリ参加') && !足跡('文化祭の買い出し終了')"]
+[eval exp="var 開始前の進捗 = f.進捗"]
+[eval exp="f.進捗 += 今日の進捗"]
 
+[call storage="scenario/個別/マリ.ks" cond="足跡('マリ参加') && !足跡('文化祭の買い出し終了')"]
+[call storage="scenario/イベント/準備が進む.ks"]
 [背景 画像=教室夕方]
 
 *進捗表示
@@ -186,8 +189,7 @@
 [ch text="&'＋  '+(進捗招集)+'％ '" cond="f.モブ男招集"]
 [ch text="&'＋  '+(進捗招集)+'％ '" cond="f.モブ女招集"]
 [style autoreturn=true][r]
-進捗率：[emb exp="f.進捗"]％  →
-[eval exp="f.進捗+=今日の進捗"]
+進捗率：[emb exp="開始前の進捗"]％  →
   [font color=&色：強化 cond="f.進捗 >= 100"][emb exp="f.進捗"]％[resetfont][next]
 [endnowait]
 [if exp="f.進捗 >= 150"][実績解除 名前=実績１９：進捗１５０％][endif]
