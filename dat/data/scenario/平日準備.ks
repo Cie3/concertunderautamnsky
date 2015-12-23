@@ -192,6 +192,7 @@
 進捗率：[emb exp="開始前の進捗"]％  →
   [font color=&色：強化 cond="f.進捗 >= 100"][emb exp="f.進捗"]％[resetfont][next]
 [endnowait]
+[if exp="人員計算() == 8"][実績解除 名前=実績１０：人員ＭＡＸ][endif]
 [if exp="f.進捗 >= 150"][実績解除 名前=実績１９：進捗１５０％][endif]
 [モノローグ終了]
 [BGM停止 時間 = 2000]
