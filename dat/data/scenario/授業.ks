@@ -234,7 +234,7 @@ var n = f.日;
 		[else]自分でもびっくりだ。
 		[endif]
 		[eval exp="成績優秀 = 1"]
-		[if exp="f.点数 == 100"][eval exp="実績主席 = 1"][endif]
+		[if exp="f.試験の点数 == 100"][eval exp="実績主席 = 1"][endif]
 	[elsif exp="f.試験の点数 >= 62"]
 		[if exp="f.成績チート"]馬鹿な……！ そんな、あるわけない……[eval exp="f.成績チート = 0"]
 		[else]まあ、順当にこんなところか。
