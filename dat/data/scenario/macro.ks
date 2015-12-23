@@ -1187,6 +1187,7 @@ f.体力 = Math.min(f.体力, f.生命);
 *会話の種表示
 	;顔が残らないように
 	[誰と話す消去]
+	[eval exp="var automodeenabled = kag.autoMode > 1"]
 	[history output=false]
 	[position layer=message2 visible=false]
 	[eval exp="var i=0, j=countSeed()"]
@@ -1243,4 +1244,5 @@ f.体力 = Math.min(f.体力, f.生命);
 	[transskip]
 	[backlay]
 	[history output=&f.履歴許可]
+	[eval exp="enterAutoMode()" cond="automodeenabled"]
 [return]
