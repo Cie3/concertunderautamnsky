@@ -943,6 +943,13 @@ function saveLabel() {
 	return f.© + f.–¼ + ' [' + f.i’» + '“' + '] ' + 'c‚è' + f.“ú + '“ú ' + f.—j“ú;
 }
 
+function scoreSpacer(n) {
+	if(0 <= n && n <= 9) return '    ';
+	if(10 <= n && n <= 99) return '   ';
+	if(100 <= n && n <= 999) return '  ';
+	return '';
+}
+
 [endscript]
 
 [return]

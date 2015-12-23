@@ -1,3 +1,4 @@
+
 [jump storage="scenario/イベント/準備が進む.ks"]
 
 [jump storage="scenario/個別/前原先生.ks"]
