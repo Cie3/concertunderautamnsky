@@ -3762,6 +3762,10 @@ class KAGWindow extends Window
 
 				if(st != stopst && autoMode)
 				{
+					// 変更cie3：自動読み進め中にクリックすると、ページ末まで飛ばされる
+					if (!kag.conductor.trigger('click') && st == runst && kag.clickSkipEnabled && kag.skipMode == 0) {
+						kag.skipToClick();
+					}
 					// 自動読みすすみの場合
 					cancelAutoMode();
 				}

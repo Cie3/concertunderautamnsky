@@ -943,6 +943,13 @@ function saveLabel() {
 	return f.姓 + f.名 + ' [' + f.進捗 + '％' + '] ' + '残り' + f.日 + '日 ' + f.曜日;
 }
 
+function scoreSpacer(n) {
+	if(0 <= n && n <= 9) return '    ';
+	if(10 <= n && n <= 99) return '   ';
+	if(100 <= n && n <= 999) return '  ';
+	return '';
+}
+
 [endscript]
 
 [return]
@@ -1180,6 +1187,7 @@ f.体力 = Math.min(f.体力, f.生命);
 *会話の種表示
 	;顔が残らないように
 	[誰と話す消去]
+	[eval exp="var automodeenabled = kag.autoMode > 1"]
 	[history output=false]
 	[position layer=message2 visible=false]
 	[eval exp="var i=0, j=countSeed()"]
@@ -1236,4 +1244,5 @@ f.体力 = Math.min(f.体力, f.生命);
 	[transskip]
 	[backlay]
 	[history output=&f.履歴許可]
+	[eval exp="enterAutoMode()" cond="automodeenabled"]
 [return]
