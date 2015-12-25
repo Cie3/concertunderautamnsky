@@ -1,3 +1,6 @@
+;http://taira-komori.jpn.org/event01.html ざわざわ・拍手・打ち上げ花火
+;http://commons.nicovideo.jp/material/nc13275 歓声
+;http://on-jin.com/ ドラムロール
 ;http://www5d.biglobe.ne.jp/~gakai/ 背景素材
 ;http://istoweb.sblo.jp/article/54829671.html キーボード
 ;http://taira-komori.jpn.org/freesound.html 倒れる音
@@ -417,7 +420,10 @@
 [枠][メッセージ]
 [nowait]
 俺の名前は 
-[edit color="0x0000FF" length=140 maxchars=14 name=f.姓] 
+[if exp="testplay"]
+	[eval exp="f.姓 = '試験', f.名 = 'プレイ'"]
+[endif]
+[edit color="0x0000FF" length=140 maxchars=14 name=f.姓]　
 [edit color="0x0000FF" length=160 maxchars=16 name=f.名]
 。[ルビ 読み=あき]秋[ルビ 読み=が]ヶ[ルビ 読み=や]谷高校、２年２組の生徒だ。
 [r][r]

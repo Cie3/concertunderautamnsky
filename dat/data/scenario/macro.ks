@@ -85,6 +85,10 @@ function モノローグ初期化() {
 [iscript]
 var lay顔 = 16;
 var lay説明 = 20;
+
+var personC = false; // 中央に人がいるか
+var personR = false; // 右側に人がいるか
+var personL = false; // 左側に人がいるか
 [endscript]
 ;[eval exp="hasSeed('無効なタネ')"]
 
@@ -194,7 +198,16 @@ var lay説明 = 20;
 [macro name=自分]
 [position layer=message1 page=back frame="ネームボックス自分"]
 [position layer=message0 page=back frame="テキストボックス自分"]
-[position layer=message1 page=back left=300]
+[if exp="!personC"]
+	[position layer=message1 page=back left=460]
+[elsif exp="!personL"]
+	[position layer=message1 page=back left=220]
+[elsif exp="!personR"]
+	[position layer=message1 page=back left=700]
+[else]
+	[position layer=message1 page=back left=460]
+[endif]
+
 [layopt layer=message1 page=back visible=true]
 [名前欄 自分 名前="&f.姓+f.名"]
 [transskip]
@@ -214,6 +227,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=表情]
+[eval exp="personC = true"]
 [image storage=%画像 layer=1 page=back visible=true]
 [eval exp="mp.tmp0 = kag.back.layers[1].width, mp.tmp1 = kag.fore.base.width, mp.tmp0 = (mp.tmp1 - mp.tmp0) / 2"]
 [layopt layer=1 page=back left=&mp.tmp0]
@@ -221,6 +235,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=表情左]
+[eval exp="personL = true"]
 [eval exp="var dx = 440"]
 [eval exp="dx -= 120" cond="mp.遠い"]
 [image storage=%画像 layer=2 page=back visible=true]
@@ -234,6 +249,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=表情右]
+[eval exp="personR = true"]
 [eval exp="var dx = 440"]
 [eval exp="dx -= 120" cond="mp.遠い"]
 [image storage=%画像 layer=3 page=back visible=true]
@@ -247,6 +263,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=人物]
+[eval exp="personC = true"]
 [position layer=message1 page=back frame="ネームボックス"]
 [position layer=message0 page=back frame="テキストボックス"]
 [position layer=message1 page=back left=460]
@@ -259,6 +276,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=人物消去]
+[eval exp="personC = false"]
 [layopt layer=1 page=back visible=false]
 [transskip]
 ;[current layer=message1][er][backlay layer=message1][current layer=message0]
@@ -266,6 +284,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=人物左]
+[eval exp="personL = true"]
 [position layer=message1 page=back frame="ネームボックス"]
 [position layer=message0 page=back frame="テキストボックス"]
 [position layer=message1 page=back left=220]
@@ -282,6 +301,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=人物左消去]
+[eval exp="personL = false"]
 [layopt layer=2 page=back visible=false]
 [transskip]
 ;[current layer=message1][er][backlay layer=message1][current layer=message0]
@@ -289,6 +309,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=人物右]
+[eval exp="personR = true"]
 [position layer=message1 page=back frame="ネームボックス"]
 [position layer=message0 page=back frame="テキストボックス"]
 [position layer=message1 page=back left=700]
@@ -305,6 +326,7 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=人物右消去]
+[eval exp="personR = false"]
 [layopt layer=3 page=back visible=false]
 [transskip]
 ;[current layer=message1][er][backlay layer=message1][current layer=message0]
@@ -312,6 +334,9 @@ var lay説明 = 20;
 [endmacro]
 
 [macro name=人物全消去]
+[eval exp="personC = false"]
+[eval exp="personL = false"]
+[eval exp="personR = false"]
 [layopt layer=1 page=back visible=false]
 [layopt layer=2 page=back visible=false]
 [layopt layer=3 page=back visible=false]
