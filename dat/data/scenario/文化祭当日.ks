@@ -22,6 +22,7 @@
 [場面転換]
 [BGM 曲=いよいよ文化祭.ogg 音量=60]
 
+*テストプレイ
 [if exp="testplay"]
 	[三択 ア=進捗６０％ イ=進捗１１０％ ウ=進捗１６０％]
 	[if exp="ア"]
@@ -72,7 +73,7 @@
 
 [endif]
 
-
+*エンド条件判定
 [eval exp="var 最終人員 = 人員計算()"]
 [eval exp="var ending = -1"]
 [if exp="最終人員 == 8 && f.進捗 >= 100"][eval exp="ending = 6"]
@@ -96,11 +97,11 @@
 	[if exp="f.マリ攻略"]マリ[endif]
 	[n]
 	参加した人数（自分を含む）：[emb exp="最終人員"][next]
-	[eval exp="var highscore1 = 0"]
-	[eval exp="var highscore2 = 0"]
 [endif]
 
-
+*エンドフラグ・スコア処理
+[eval exp="var highscore1 = 0"]
+[eval exp="var highscore2 = 0"]
 [if exp="ending == 3"]
 	[eval exp="sf.エンド３：失敗カフェ = 1"]
 	[eval exp="var highscore1 = 1" cond="f.進捗 > sf.ハイスコア進捗３"]
