@@ -27,9 +27,3 @@
 	[jump storage="文化祭当日.ks"]
 [endif]
 [return]
-
-[jump storage="文化祭当日.ks"]
-
-[jump storage="scenario/イベント/準備が進む.ks" target="*進捗60x"]
-
-[jump storage="scenario/個別/前原先生.ks"]
