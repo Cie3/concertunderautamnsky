@@ -91,6 +91,7 @@
 	[if exp="f.T>4"][eval exp="f.T=1, f.Œ+=1"]
 	[endif]
 [endif]
+[eval exp="f.—j“ú = '“–“ú'" cond="f.“ú == 0"]
 
 [eval exp="“ú•t•\¦(0)"]
 [”wŒi ‰æ‘œ= •  ŠÔ= 5000]
