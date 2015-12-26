@@ -422,6 +422,8 @@
 俺の名前は 
 [if exp="testplay"]
 	[eval exp="f.姓 = '試験', f.名 = 'プレイ'"]
+[else]
+	[eval exp="f.姓 = '小金井', f.名 = 'マサト'"]
 [endif]
 [edit color="0x0000FF" length=140 maxchars=14 name=f.姓]　
 [edit color="0x0000FF" length=160 maxchars=16 name=f.名]
