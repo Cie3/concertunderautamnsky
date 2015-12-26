@@ -1316,7 +1316,7 @@ f.体力 = Math.min(f.体力, f.生命);
 	[if exp= "i < j"]
 		[nowait]
 		[if exp= "i % 6 == 0"]
-			会話の種：[emb exp= "j"][r][r]
+			会話の種：[emb exp= "j"]個                              （[emb exp="(int)(j / 6) + 1"]ページ中 [emb exp="(int)(i / 6) + 1"]ページ目）[r][r]
 		[endif]
 		[emb exp= "i+1"].
 
