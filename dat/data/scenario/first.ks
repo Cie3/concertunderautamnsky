@@ -503,7 +503,7 @@
 [jump target="*読み飛ばし" cond="kag.skipMode <= 1"]
 [cancelskip]
 [nowait]スキップされました。[endnowait][next]
-次のキーはあまり使いません。[n]
+重要ではないキーの紹介をします。[n]
 [font color=0x22BB33]Ａ    …… 自動再生[n]
 [font color=0x887733]Space …… 文字表示枠を隠す[resetfont]（右クリックでもＯＫ）[resetfont][next]
 これでキーボード操作の説明を終わります。[next]
