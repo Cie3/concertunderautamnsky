@@ -714,6 +714,19 @@ var personL = false; // 左側に人がいるか
 [endif]
 [endmacro]
 
+[macro name=文化祭準備の曲]
+[if exp="f.進捗 < 40"]
+[BGM 曲=文化祭準備01.ogg 音量=50]
+[elsif exp="f.進捗 < 60"]
+[BGM 曲=文化祭準備04.ogg 音量=55]
+[elsif exp="f.進捗 < 80"]
+[BGM 曲=文化祭準備05.ogg 音量=55]
+[elsif exp="f.進捗 < 100"]
+[BGM 曲=文化祭準備06.ogg 音量=60]
+[else]
+[BGM 曲=文化祭準備07.ogg]
+[endif]
+[endmacro]
 [iscript]
 
 // 文字列が全角文字で何文字相当なのかを計測する

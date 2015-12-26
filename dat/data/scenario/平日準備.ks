@@ -4,7 +4,7 @@
 [eval exp="f.•½“ú€”õ’† = 1"]
 [ê–Ê“]Š·]
 [eval exp="var ¡“ú‚Ìi’» = 0"]
-[BGM ‹È=•¶‰»Õ€”õ01.ogg ‰¹—Ê=50 ƒ‹[ƒv]
+[•¶‰»Õ€”õ‚Ì‹È]
 [”wŒi ‰æ‘œ=‹³Žº•ú‰ÛŒã]
 [˜g]
 [l•¨ ‰æ‘œ=ƒJƒŒƒ“”­Œ¾ –¼‘O=—öƒ–ŒEƒJƒŒƒ“]
@@ -245,7 +245,7 @@ f.ƒCƒYƒ~µW = f.ƒ}ƒ†µW = f.ƒJƒPƒ‹µW = f.ƒ~ƒhƒŠµW = f.ƒ}ƒŠµW = f.ƒ‚ƒu’j
 
 [ê–Ê“]Š·]
 [”wŒi ‰æ‘œ=‹³Žº—[•û]
-[BGM ‹È=•¶‰»Õ€”õ01.ogg ‰¹—Ê=50 ƒ‹[ƒv]
+[•¶‰»Õ€”õ‚Ì‹È]
 
 [˜g]
 [Ž©•ª]
