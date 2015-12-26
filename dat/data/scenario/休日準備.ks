@@ -79,6 +79,7 @@
 [eval exp="f.進捗 += 今日の進捗"]
 
 [call storage="scenario/イベント/準備が進む.ks"]
+[call storage="scenario/イベント/参加後"]
 [背景 画像=空き教室夕方]
 
 *進捗表示
