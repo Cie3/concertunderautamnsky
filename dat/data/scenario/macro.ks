@@ -714,6 +714,14 @@ var personL = false; // ¶‘¤‚Él‚ª‚¢‚é‚©
 [endif]
 [endmacro]
 
+[macro name="”wŒi€”õ‹³º"]
+[if exp="f.—j“ú == 'T––'"]
+	[”wŒi ‰æ‘œ=‹ó‚«‹³º]
+[else]
+	[”wŒi ‰æ‘œ=‹³º•ú‰ÛŒã]
+[endif]
+[endmacro]
+
 [macro name=•¶‰»Õ€”õ‚Ì‹È]
 [if exp="f.i’» < 30"]
 [BGM ‹È=•¶‰»Õ€”õ01.ogg ‰¹—Ê=50]

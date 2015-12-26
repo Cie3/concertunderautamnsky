@@ -1,11 +1,3 @@
-[macro name="”wŒi€”õ‹³º"]
-[if exp="f.—j“ú == '‹x“ú'"]
-	[”wŒi ‰æ‘œ=‹ó‚«‹³º]
-[else]
-	[”wŒi ‰æ‘œ=‹³º•ú‰ÛŒã]
-[endif]
-[endmacro]
-
 [if exp="testplay"]
 	[BGM ‹È=“úí’‹.ogg ‰¹—Ê=50]
 	[”wŒi ‰æ‘œ=‹³º]
