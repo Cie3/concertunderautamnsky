@@ -487,6 +487,8 @@
 
 [二択 ア="ゲームの説明を聞く" イ="聞かない"]
 [if exp="ア"]
+[eval exp="f.履歴許可 = true"]
+[ボタン表示]
 [BGM 曲=操作説明.ogg 音量=40]
 [eval exp="f.説明 = 'キー操作'"]
 [枠][メッセージ]
@@ -507,6 +509,7 @@
 [font color=0x22BB33]Ａ    …… 自動再生[n]
 [font color=0x887733]Space …… 文字表示枠を隠す[resetfont]（右クリックでもＯＫ）[resetfont][next]
 これでキーボード操作の説明を終わります。[next]
+[eval exp="f.履歴許可 = false"]
 [メッセージ]
 [背景 画像=黒]
 [endif]

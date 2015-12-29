@@ -80,8 +80,8 @@ var n = f.日;
 	[image layer="&lay説明 + 1" storage="説明ライフ" visible="true"]
 	これは、体力・生命力ゲージです。[n]
 	[font color=0x887733]黄色ゲージが体力[resetfont] を表し、寝ることで回復します。[n]
-	体力が尽きると、次に [font color=0xFF4444]赤ゲージの生命力[resetfont] が削れます。[next]
-	
+	体力が尽きると、次に [font color=0xFF4444]赤ゲージの生命力[resetfont] が削れます。[体力 変化=-70][next]
+	[プラナリア回復][体力 変化=50]
 	現在は、[font color=0x887733]体力50[resetfont]・[font color=0xFF4444]生命力100[resetfont] で、合わせて 150 の耐久力があります。[next]
 	[image layer="&lay説明 + 1" storage="説明バックログ" index="&2000000 - 1" visible="true"]
 	これはバックログ表示ボタンです。[n]
