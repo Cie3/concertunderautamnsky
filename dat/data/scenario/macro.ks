@@ -631,7 +631,7 @@ var personL = false; // 左側に人がいるか
 [eval exp="var path = 'fgimage/でふぉ/でふぉ小' + mp.名前"]
 [image storage="&path" layer="&layn" page="fore"]
 [eval exp="var idxLayer = 1001000 + 10000 + mp.位置"]
-[eval exp="var posx = 350 + mp.位置 * 20"]
+[eval exp="var posx = 410 - mp.位置 * 25"]
 [eval exp="var posy = 272 + mp.位置 * 30"]
 [layopt layer="&layn" index="&idxLayer" left="&posx" top="&posy" visible="true"]
 [endmacro]
@@ -723,11 +723,11 @@ var personL = false; // 左側に人がいるか
 [endmacro]
 
 [macro name=文化祭準備の曲]
-[if exp="f.進捗 < 30"]
+[if exp="f.進捗 < 20"]
 [BGM 曲=文化祭準備01.ogg 音量=50]
-[elsif exp="f.進捗 < 50"]
+[elsif exp="f.進捗 < 40"]
 [BGM 曲=文化祭準備04.ogg 音量=60]
-[elsif exp="f.進捗 < 80"]
+[elsif exp="f.進捗 < 70"]
 [BGM 曲=文化祭準備05.ogg 音量=60]
 [elsif exp="f.進捗 < 100"]
 [BGM 曲=文化祭準備06.ogg 音量=60]
@@ -1324,7 +1324,7 @@ f.体力 = Math.min(f.体力, f.生命);
 	[if exp= "i < j"]
 		[nowait]
 		[if exp= "i % 6 == 0"]
-			会話の種：[emb exp= "j"]個                              （[emb exp="(int)(j / 6) + 1"]ページ中 [emb exp="(int)(i / 6) + 1"]ページ目）[r][r]
+			会話の種：[emb exp= "j"]個                              （[emb exp="(int)((j - 1) / 6) + 1"]ページ中 [emb exp="(int)(i / 6) + 1"]ページ目）[r][r]
 		[endif]
 		[emb exp= "i+1"].
 

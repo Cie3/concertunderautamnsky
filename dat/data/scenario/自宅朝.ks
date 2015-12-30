@@ -47,6 +47,31 @@
 
 *朝
 
+[if exp="f.説明 == '放課後'"]
+	[eval exp="f.説明 = '自宅朝'"]
+	[cancelskip]
+	[image layer="&lay説明" storage="説明自宅朝" visible="true" opacity="191"][backlay]
+	[nowait]１日を始める前に、確認することは？[endnowait][next]
+	[人物 画像=なし 名前=操作ガイド]
+	セーブの説明をします。[next]
+	[layopt layer="&lay説明" opacity="255"][backlay]
+	[image layer="&lay説明+1" storage="説明自宅朝セーブ" visible="true"][backlay]
+	朝起きると、セーブをすることができます。[n]
+	10個のスロットがあるので、ストーリーが進むごとに[n]
+	別スロットにセーブすると、詰みにくくなります。[next]
+	また、[font color=&色：強化]活動開始すると自動でセーブ[resetfont]が行われるため、[n]
+	簡単にその日の朝からやり直すことができます。[next]
+	[layopt layer="&lay説明" opacity="191"][backlay]
+	[image layer="&lay説明+1" storage="説明自宅朝タイトル" visible="true"][backlay]
+	やり直すときには、タイトルボタンを押しましょう。[n]
+	このボタンはいつでも押すことができます。[next]
+	
+	これで操作説明を終わります。[next]
+	[メッセージ]
+	[layopt layer="&lay説明+1" visible="false"][backlay]
+	[layopt layer="&lay説明" visible="false"][backlay]
+[endif]
+
 [nowait]１日を始める前に、確認することは？[endnowait]
 [ボタン表示自室種]
 [eval exp="var 進捗 = (f.日 >= 21 ? '' : '進捗率を見る')"]

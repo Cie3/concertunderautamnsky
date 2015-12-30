@@ -25,15 +25,43 @@ var 出現ウ = 出現[str + 'ウ'];
 *誰に話しかけようかな
 
 [iscript]
-アに話しかける = 出現ア == '' ? '' : 出現ア + 'に話しかける';
-イに話しかける = 出現イ == '' ? '' : 出現イ + 'に話しかける';
-ウに話しかける = 出現ウ == '' ? '' : 出現ウ + 'に話しかける';
+アに話しかける = 出現ア == '' ? '' : fullname(出現ア) + 'に話しかける';
+イに話しかける = 出現イ == '' ? '' : fullname(出現イ) + 'に話しかける';
+ウに話しかける = 出現ウ == '' ? '' : fullname(出現ウ) + 'に話しかける';
 var 帰る = 'さっさと帰る (+' + 早退回復 + ')';
 [endscript]
 
 *種を表示
 [枠]
 [メッセージ]
+
+[if exp="f.説明 == '会話の種'"]
+	[eval exp="f.説明 = '放課後'"]
+	[cancelskip]
+	[image layer="&lay説明" storage="説明放課後" visible="true" opacity="191"][backlay]
+	[nowait]
+	今日の授業は全て終わった。[r]
+	帰る前に誰と話そうか。
+	[endnowait][next]
+	[人物 画像=なし 名前=操作ガイド]
+	放課後の説明をします。[next]
+	[layopt layer="&lay説明" opacity="255"][backlay]
+	[image layer="&lay説明+1" storage="説明放課後カズキ" visible="true"][backlay]
+	放課後には、基本的に３人が出てきます。[n]
+	（今日はカズキしかいませんが……）[next]
+	昼休みと違い、放課後は [font color=&色：強化]１人しか話すことができません[resetfont]。[next]
+	[image layer="&lay説明+1" storage="説明放課後早退" visible="true"][backlay]
+	誰にも話さずに帰ると、体力が３回復します。[next]
+	[layopt layer="&lay説明" opacity="191"][backlay]
+	[image layer="&lay説明+1" storage="説明会話の種" visible="true"][backlay]
+	誰と話すかを考えるには、どの会話の種を持っているかが[n]
+	大きなヒントになります。[next]
+	話しかける前に会話の種を確認するようにしましょう。[next]
+	[メッセージ]
+	[layopt layer="&lay説明+1" visible="false"][backlay]
+	[layopt layer="&lay説明" visible="false"][backlay]
+[endif]
+
 [ボタン表示種]
 [nowait]
 今日の授業は全て終わった。[r]
