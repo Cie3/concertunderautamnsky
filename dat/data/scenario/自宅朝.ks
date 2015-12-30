@@ -59,7 +59,7 @@
 	朝起きると、セーブをすることができます。[n]
 	10個のスロットがあるので、ストーリーが進むごとに[n]
 	別スロットにセーブすると、詰みにくくなります。[next]
-	また、活動開始すると自動でセーブが行われるため、[n]
+	また、[font color=&色：強化]活動開始すると自動でセーブ[resetfont]が行われるため、[n]
 	簡単にその日の朝からやり直すことができます。[next]
 	[layopt layer="&lay説明" opacity="191"][backlay]
 	[image layer="&lay説明+1" storage="説明自宅朝タイトル" visible="true"][backlay]
