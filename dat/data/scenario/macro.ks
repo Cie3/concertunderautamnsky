@@ -72,6 +72,7 @@ function モノローグ初期化() {
 ; 15……曜日
 ; 16-18……誰と話す顔アイコン
 ; 20-22……説明用画像
+; 24-27……スタッフロール
 
 [eval exp="var 黒棒"]
 [eval exp="var 赤棒"]
@@ -85,6 +86,7 @@ function モノローグ初期化() {
 [iscript]
 var lay顔 = 16;
 var lay説明 = 20;
+var laystaff = 24;
 
 var personC = false; // 中央に人がいるか
 var personR = false; // 右側に人がいるか

@@ -489,7 +489,7 @@
 いや、帰ってからのお楽しみだ。[next]
 [if exp="f.学力 < 75"][eval exp="f.成績チート = 1"][endif]
 [eval exp="f.学力 = 95"]
-[eval exp="f.試験の成績 = Math.min(f.試験の成績, 95)"]
+[eval exp="f.試験の点数 = Math.min(f.試験の成績, 95)"]
 [足跡 名前=前原先生のアドバイス終]
 [実績解除 名前=実績１８：前原先生？]
 [return]
