@@ -1043,7 +1043,7 @@
 エンド５[r]
 「 失敗カフェ 」[r]
 [スコア表示]
-[cancelautomode][next]
+[cancelautomode][cancelskip][next]
 [タイトルに戻る]
 *失敗カフェx
 
@@ -1087,7 +1087,7 @@
 エンド４[r]
 「 三人の精鋭 」[r]
 [スコア表示]
-[cancelautomode][next]
+[cancelautomode][cancelskip][next]
 [タイトルに戻る]
 
 *三人の精鋭x
@@ -1132,7 +1132,7 @@
 エンド５[r]
 「 文化祭成功 」[r]
 [スコア表示]
-[cancelautomode][next]
+[cancelautomode][cancelskip][next]
 [タイトルに戻る]
 *文化祭成功x
 
@@ -1261,7 +1261,7 @@
 [endif]
 [r]
 [スコア表示]
-[cancelautomode][next]
+[cancelautomode][cancelskip][next]
 
 [タイトルに戻る]
 *秋空のコンチェルトx
@@ -1294,7 +1294,7 @@
 エンド７[r]
 「 高嶺のお嬢様 」[r]
 [スコア表示]
-[cancelautomode][next]
+[cancelautomode][cancelskip][next]
 [タイトルに戻る]
 
 *カレンエンド
@@ -1383,7 +1383,7 @@
 エンド８[r]
 「 迷える突撃娘 」[r]
 [スコア表示]
-[cancelautomode][next]
+[cancelautomode][cancelskip][next]
 [タイトルに戻る]
 
 *マリエンド
@@ -1460,7 +1460,7 @@
 エンド９[r]
 「 悔い改めよ 」[r]
 [スコア表示]
-[cancelautomode][next]
+[cancelautomode][cancelskip][next]
 
 [タイトルに戻る]
 
