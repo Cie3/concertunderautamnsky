@@ -19,6 +19,7 @@
 [elsif exp="ク"]
 	[jump storage="scenario/個別/前原先生.ks"]
 [elsif exp="ケ"]
+	[eval exp="f.日=20"]
 	[jump storage="scenario/個別/カズキ.ks"]
 [elsif exp="コ"]
 	[jump storage="登校.ks"]
