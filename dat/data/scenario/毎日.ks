@@ -30,7 +30,7 @@
 		[枠消去]
 	[endif]
 [endif]
-[ボタン表示自室]
+[ボタン表示自室夜]
 [eval exp="f.履歴許可 = false"]
 [history output=false]
 [call storage= 自宅夜.ks]

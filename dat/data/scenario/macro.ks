@@ -610,10 +610,15 @@ var personL = false; // 左側に人がいるか
 [eval exp="global.systembutton_object.setMode(5)"]
 [endmacro]
 
+[macro name=ボタン表示自室夜]
+[eval exp="global.systembutton_object.setMode(6)"]
+[endmacro]
+
 [macro name=ボタン消去]
 [sysbtopt forevisible=false backvisible=false]
 [eval exp="global.systembutton_object.setMode(0)"]
 [endmacro]
+
 
 
 
@@ -1294,6 +1299,32 @@ f.体力 = Math.min(f.体力, f.生命);
 [枠消去]
 [jump storage=first.ks target=*起動]
 
+*朝に戻る
+[jump target="*タイトルに戻る" cond="testplay"]
+[ボタン消去]
+[eval exp="棒消去()"]
+[eval exp="日付消去()"]
+[eval exp="kag.historyLayer.clear()"]
+[eval exp="f.履歴許可=false"]
+[cancelautomode]
+[history enabled=false]
+[layopt layer=&layerモノローグ page=back visible=false]
+[layopt layer="&lay顔 + 0" page=back visible=false]
+[layopt layer="&lay顔 + 1" page=back visible=false]
+[layopt layer="&lay顔 + 2" page=back visible=false]
+[layopt layer="&lay説明 + 0" page=back visible=false]
+[layopt layer="&lay説明 + 1" page=back visible=false]
+[layopt layer="&lay説明 + 2" page=back visible=false]
+; 文字表示枠の初期化
+[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40 page="back"]
+[BGM停止]
+[SE停止]
+[人物全消去]
+[枠消去]
+[ま]
+[load place=0 cond="オートセーブ可能 || 再開スロット == 0"]
+[load place=&セーブスロット候補]
+
 *終了処理
 [ボタン消去]
 [BGM停止]
@@ -1358,8 +1389,8 @@ f.体力 = Math.min(f.体力, f.生命);
 		[jump target= *ループA]
 	[endif]
 	[next]
-	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40 page="back" visible="true"]
-	[transskip]
+	[position layer= message0 frame= image/テキストボックス.png  left= 180  top= 570  margint= 13  marginl= 40 page="fore" visible="true"]
+	;[transskip]
 	[backlay]
 	[history output=&f.履歴許可]
 	[eval exp="enterAutoMode()" cond="automodeenabled"]

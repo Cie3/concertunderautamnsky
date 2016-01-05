@@ -120,6 +120,11 @@ class SystemButtonPlugin extends KAGPlugin
 		array.add(obj = new SystemButtonLayer(kag, parent, onSeedButtonClick));
 		obj.loadImages('ボタン種');
 		obj.hint = '会話の種を確認します'; // 5
+
+		array.add(obj = new SystemButtonLayer(kag, parent, onLoadButtonClick));
+		obj.loadImages('ボタンload');
+		obj.hint = '今朝に戻ってやり直します'; // 6
+
 /*		// ボタン 0 (セーブ)
 		array.add(obj = new SystemButtonLayer(kag, parent, onSaveButtonClick));
 		obj.loadImages('YesButton'); // save ボタン用画像を読み込む
@@ -170,6 +175,8 @@ class SystemButtonPlugin extends KAGPlugin
 		foreButtons[4].setPos(40, 600);
 		backButtons[5].setPos(40, 450);
 		foreButtons[5].setPos(40, 450);
+		backButtons[6].setPos(40, 660);
+		foreButtons[6].setPos(40, 660);
 	}
 
 
@@ -186,7 +193,18 @@ class SystemButtonPlugin extends KAGPlugin
 	function onLoadButtonClick()
 	{
 		// ロード ボタンが押された
-		kag.loadBookMarkFromFileWithAsk();
+		//kag.loadBookMarkFromFileWithAsk();
+		playSound();
+		var res;
+		if(f.日 == 0) {
+			res = askYesNo('のこり１日の朝に戻ってやり直します。', '朝に戻る');
+		} else {
+			res = askYesNo('今朝に戻ってやり直します。', '朝に戻る');
+		}
+		playSound();
+		if(res) {
+			kag.process('macro.ks', '*朝に戻る');
+		}
 	}
 	
 	function onBackButtonClick() {
@@ -201,8 +219,11 @@ class SystemButtonPlugin extends KAGPlugin
 	
 	function onTitleButtonClick() {
 		playSound();
-		var res = askYesNo('セーブせずにタイトルに戻ります。', 'タイトルに戻る');
-		playSound();
+		var res = true;
+		if(オートセーブ可能) {
+			res = askYesNo('セーブせずにタイトルに戻ります。', 'タイトルに戻る');
+			playSound();
+		}
 		if(res) {
 			kag.process('macro.ks', '*タイトルに戻る');
 		}
@@ -234,7 +255,7 @@ class SystemButtonPlugin extends KAGPlugin
 		} else if(mode == 1) { // いつもの
 			foreButtons[0].visible = true; // back
 			foreButtons[1].visible = true; // auto
-			foreButtons[2].visible = true; // title
+			foreButtons[6].visible = true; // load
 			foreButtons[4].visible = true; // screen
 		} else if(mode == 2) { // タイトル
 			foreButtons[3].visible = true; // exit
@@ -245,13 +266,16 @@ class SystemButtonPlugin extends KAGPlugin
 		} else if(mode == 4) { // 種
 			foreButtons[0].visible = true; // back
 			foreButtons[1].visible = true; // auto
+			foreButtons[6].visible = true; // load
+			foreButtons[4].visible = true; // screen
+			foreButtons[5].visible = true; // 種
+		} else if(mode == 5) { // 自室朝
 			foreButtons[2].visible = true; // title
 			foreButtons[4].visible = true; // screen
 			foreButtons[5].visible = true; // 種
-		} else if(mode == 5) {
-			foreButtons[2].visible = true; // title
+		} else if(mode == 6) { // 自室夜
+			foreButtons[6].visible = true; // load
 			foreButtons[4].visible = true; // screen
-			foreButtons[5].visible = true; // 種
 		}
 		for(var i = foreButtons.count; i-->0;) {
 			backButtons[i].visible = foreButtons[i].visible;
