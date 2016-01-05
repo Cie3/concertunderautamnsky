@@ -179,7 +179,11 @@
 
 [ê–Ê“]Š·]
 [‚Ü][‚Ü][‚Ü]
-[if exp=f.’‹‹x‚Ý][”wŒi ‰æ‘œ=‹³Žº][else][”wŒi ‰æ‘œ=‹³Žº—[•û][endif]
+[if exp=f.’‹‹x‚Ý]
+	[”wŒi ‰æ‘œ=˜L‰º]
+[else]
+	[”wŒi ‰æ‘œ=‹³Žº—[•û]
+[endif]
 [•\î ‰æ‘œ=ƒ}ƒŠ‚¤[‚ñ]
 [˜g]
 [Ž©•ª]
