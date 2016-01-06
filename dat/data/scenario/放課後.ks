@@ -20,7 +20,7 @@ var 出現イ = 出現[str + 'イ'];
 var 出現ウ = 出現[str + 'ウ'];
 [endscript]
 
-[BGM ループ=true 音量=50 曲=夕暮れ.ogg]
+[夕暮れ.ogg]
 
 *誰に話しかけようかな
 

@@ -4,7 +4,7 @@
 [call storage=systembutton.ks]
 ; システムボタン
 [loadplugin module="wuvorbis.dll"]
-[bgmopt gvolume=80]
+
 ; ogg vorbis
 [eval exp="kag.askOnClose=false"]
 ; 閉じるときに確認しない
@@ -458,23 +458,11 @@ var personL = false; // 左側に人がいるか
 [fadeoutse buf=%buf time=%時間]
 [endmacro]
 
-[macro name=カラス]
-[SE 音=カラス.ogg 音量=50 buf=2]
-[endmacro]
-
-[macro name=ぺらり]
-[SE 音=紙をめくる.ogg 音量=50]
-[endmacro]
-
-[macro name=いい話だなあ]
-[BGM ループ 音量=60 曲=いい話だなあ.ogg]
-[endmacro]
-
 [macro name=実績解除]
 [if exp="sf[mp.名前] != 1"]
 	[cancelskip]
 	[bgmopt volume=&"BGM音量/2"]
-	[SE 音=クリア.ogg 音量=50]
+	[クリア.ogg]
 	[メッセージ]
 	[emb exp="mp.名前"] ★達成★[ws][fadebgm volume=&"BGM音量" time=500][next]
 	[eval exp="sf[mp.名前] = 1"]
@@ -487,7 +475,7 @@ var personL = false; // 左側に人がいるか
 [eval exp="gainSeed(mp.名前, mp.詳細, mp.期限, false)"]
 [モノローグ]
 [cancelskip]
-[SE 音=手に入れた.ogg 音量=40 buf=1]
+[手に入れた.ogg]
 [nowait]※会話の種 [font color=0xdd4400][emb exp=mp.名前][resetfont] を手に入れた。[r]
 （使用期限 [emb exp=mp.期限]日・１回限り）[endnowait][next]
 [モノローグ終了]
@@ -499,7 +487,7 @@ var personL = false; // 左側に人がいるか
 [eval exp="gainSeed(mp.名前, mp.詳細, mp.期限, true)"]
 [モノローグ]
 [cancelskip]
-[SE 音=手に入れた.ogg 音量=40 buf=1]
+[手に入れた.ogg]
 [nowait]※会話の種 [font color=0x0066ff][emb exp=mp.名前][resetfont] を手に入れた。[r]
 （使用期限 [emb exp=mp.期限]日・回数制限なし）[endnowait][next]
 [モノローグ終了]
@@ -729,19 +717,6 @@ var personL = false; // 左側に人がいるか
 [endif]
 [endmacro]
 
-[macro name=文化祭準備の曲]
-[if exp="f.進捗 < 20"]
-[BGM 曲=文化祭準備01.ogg 音量=55]
-[elsif exp="f.進捗 < 40"]
-[BGM 曲=文化祭準備04.ogg 音量=55]
-[elsif exp="f.進捗 < 70"]
-[BGM 曲=文化祭準備05.ogg 音量=55]
-[elsif exp="f.進捗 < 100"]
-[BGM 曲=文化祭準備06.ogg 音量=55]
-[else]
-[BGM 曲=文化祭準備07.ogg 音量=55]
-[endif]
-[endmacro]
 [iscript]
 
 // 文字列が全角文字で何文字相当なのかを計測する
@@ -1119,7 +1094,7 @@ var wid = len * 38 + 20;
 [eval exp="ア=true, イ=false, ウ=false, エ=false"]
 *f選択合流
 [cancelskip]
-[SE 音=選択 音量=40 buf=1]
+[選択.ogg]
 [layopt layer=message2 page=fore visible=false]
 [current layer=message2]
 [er]
@@ -1159,7 +1134,7 @@ var wid = len * 38 + 20;
 [s]
 *f十二択合流
 [cancelskip]
-[SE 音=選択 音量=40 buf=1]
+[選択.ogg]
 [layopt layer=message2 page=fore visible=false]
 [current layer=message2]
 [position frame="選択枠" top=270]
@@ -1207,7 +1182,7 @@ if(inf) fontcolor = 色：種無限;
 [endnowait]
 
 [current layer=message0]
-[SE 音=選択肢.ogg 音量=60 buf=2]
+[選択肢.ogg]
 [s]
 *f種選択イ
 [eval exp="ア=false, イ=true, ウ=false, エ=false"]
@@ -1217,7 +1192,7 @@ if(inf) fontcolor = 色：種無限;
 [eval exp="useSeed(idxSeed), ア=true, イ=false, ウ=false, エ=false"]
 *f種選択合流
 [cancelskip]
-[SE 音=選択 音量=40 buf=1]
+[選択.ogg]
 [layopt layer=message2 page=fore visible=false]
 [current layer=message2]
 [er]

@@ -110,7 +110,7 @@
 	[‘Ì—Í •Ï‰»=&€”õ‚O]
 	[eval exp="¡“ú‚Ìi’» += i’»‚O"]
 [elsif exp=ƒG]
-	[BGM ‹È="•¶‰»Õ€”õ03.ogg" ‰¹—Ê=60]
+	[ˆ³“|“Ii’».ogg]
 	[‘Ì—Í •Ï‰»=&€”õ‚R]
 	[eval exp="¡“ú‚Ìi’» += i’»‚R + f.ŽålŒö‰Á‘¬"]
 [endif]
@@ -209,7 +209,7 @@ f.ƒCƒYƒ~µW = f.ƒ}ƒ†µW = f.ƒJƒPƒ‹µW = f.ƒ~ƒhƒŠµW = f.ƒ}ƒŠµW = f.ƒ‚ƒu’j
 *•ú‰ÛŒãƒŒƒbƒXƒ“
 [ê–Ê“]Š·]
 [”wŒi ‰æ‘œ=‹³Žº‹¶‹C]
-[BGM ‹È=‹¶‹C‚Ì‹³Žº.ogg ‰¹—Ê=50]
+[‹¶‹C‚Ì‹³Žº.ogg]
 [˜g]
 [eval exp="f.•ú‰ÛŒãƒŒƒbƒXƒ“ = 0"]
 
@@ -236,7 +236,7 @@ f.ƒCƒYƒ~µW = f.ƒ}ƒ†µW = f.ƒJƒPƒ‹µW = f.ƒ~ƒhƒŠµW = f.ƒ}ƒŠµW = f.ƒ‚ƒu’j
 
 [˜g]
 [ƒƒbƒZ[ƒW]
-‚±‚¤‚µ‚ÄA‰´‚Ì[ƒJƒ‰ƒX]•ú‰ÛŒã‚Í’×‚ê‚Ä‚µ‚Ü‚Á‚½B[n]
+‚±‚¤‚µ‚ÄA‰´‚Ì[ƒJƒ‰ƒX.ogg]•ú‰ÛŒã‚Í’×‚ê‚Ä‚µ‚Ü‚Á‚½B[n]
 ŽŸ‚Í‚«‚¿‚ñ‚Æ•×‹­‚µ‚æ‚¤cc[next]
 
 [ŽÀÑ‰ðœ –¼‘O=ŽÀÑ‚UF•ú‰ÛŒãƒŒƒbƒXƒ“]

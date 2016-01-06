@@ -181,7 +181,7 @@ class SystemButtonPlugin extends KAGPlugin
 
 
 	function playSound() {
-		kag.tagHandlers.seopt(%["volume" => "40", "buf" => "1"]);
+		kag.tagHandlers.seopt(%["volume" => "50", "buf" => "1"]);
 		kag.tagHandlers.playse(%["storage" => "‘I‘ð.ogg", "buf" => "1"]);	}
 	
 	function onSaveButtonClick()
